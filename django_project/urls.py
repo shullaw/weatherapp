@@ -33,4 +33,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    ##-----WEATHER APP-----##
+    path('weatherapp/',
+         TemplateView.as_view(template_name="weatherapp.html"),
+         name="weatherapp"),
+    # path('weatherapp/', include('weatherapp.urls')),
 ]
