@@ -20,8 +20,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from weatherapp.views import weatherapp_view
+
 urlpatterns = [
-    path('',
+    path('home',
          TemplateView.as_view(template_name="home.html"),
          name="home"),
     path('team',
@@ -34,8 +36,8 @@ urlpatterns = [
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     ##-----WEATHER APP-----##
-    path('weatherapp/',
-         TemplateView.as_view(template_name="weatherapp.html"),
+    path('',
+         weatherapp_view,
          name="weatherapp"),
     # path('weatherapp/', include('weatherapp.urls')),
 ]
