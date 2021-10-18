@@ -1,56 +1,160 @@
 <!DOCTYPE html>
 <!--THIS IS THE FILE BEING USED FOR HOMEPAGE, NOT IN weatherapp/templates-->
 <html lang=“en”>
+
 <head>
-<meta charset=“UTF-8”>
-<title>WeatherApp</title>
-<link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”>
+  <meta charset=“UTF-8”>
+  <title>WeatherApp</title>
+  <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”>
 </head>
+
 <body>
-<div align=“center”>
-<h1>Weather in your city</h1>
-<form action=“” method=“get”>
-<input type=“text” id=“city” name=“city” placeholder=“Enter city”>
-<input type=“submit” name=“send” value=“Search”>
-</form>
-</div>
-<!----- Geolocation Javascript issue #29 ----->
-<button id = "find-me">Show my location</button><br/>
-<p id = "status"></p>
-<a id = "map-link" target="_blank"></a>
+  <div align=“center”>
+    <h1>Weather in your city</h1>
+    <form action=“” method=“get”>
+      <input type=“text” id=“city” name=“city” placeholder=“Enter city”>
+      <input type=“submit” name=“send” value=“Search”>
+    </form>
+  </div>
+  <!----- Geolocation Javascript issue #29 ----->
+  <button id="find-me">Show My Location</button><br />
+  <p id="status"></p>
+  <a id="map-link" target="_blank"></a>
+
+  <button id="weather-me">Show Weather for My Location!</button><br />
+  <p id="weather-status"></p>
+  <a id="weather-link" target="_blank"></a>
+
+  <div class="google-text-block">
+    <span class="users-numb"></span>
+    <br>
+    <span class="numb"></span>
+  </div>
+
 </body>
 <!----- Geolocation Javascript issue #29 ----->
 <script>
-function geoFindMe() {
+  function geoFindMe() {
 
-const status = document.querySelector('#status');
-const mapLink = document.querySelector('#map-link');
+    const status = document.querySelector('#status');
+    const mapLink = document.querySelector('#map-link');
 
-mapLink.href = '';
-mapLink.textContent = '';
+    mapLink.href = '';
+    mapLink.textContent = '';
 
-function success(position) {
-  const latitude  = position.coords.latitude;
-  const longitude = position.coords.longitude;
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
 
-  status.textContent = '';
-  mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-  mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-}
+      status.textContent = '';
+      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+    }
 
-function error() {
-  status.textContent = 'Unable to retrieve your location';
-}
+    function error() {
+      status.textContent = 'Unable to retrieve your location';
+    }
 
-if(!navigator.geolocation) {
-  status.textContent = 'Geolocation is not supported by your browser';
-} else {
-  status.textContent = 'Locating…';
-  navigator.geolocation.getCurrentPosition(success, error);
-}
+    if (!navigator.geolocation) {
+      status.textContent = 'Geolocation is not supported by your browser';
+    } else {
+      status.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
 
-}
+  }
 
-document.querySelector('#find-me').addEventListener('click', geoFindMe);
+  document.querySelector('#find-me').addEventListener('click', geoFindMe);
 </script>
+<!--Sunrise/Sunset UNIX TIME CONVERSION-->
+<script>
+  function timeConvert(time) {
+    let unix_timestamp = time;
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    var date = new Date(unix_timestamp * 1000);
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    if (hours > 12)
+      hours = hours - 12;
+      var night = true;
+    // Minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    var seconds = "0" + date.getSeconds();
+    // Will display time in HH:MM:SS format
+    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    // Add AM/PM to end of string
+    if (night) 
+      formattedTime = formattedTime + ' PM';
+    else
+      formattedTime = formattedTime + ' AM';
+
+    console.log(formattedTime);
+    return formattedTime;
+  }
+</script>
+<!----- Geolocation Javascript issue #29 ----->
+<script>
+  function geoWeatherMe() {
+
+    const weatherStatus = document.querySelector('#weather-status');
+    const weatherLink = document.querySelector('#weather-link');
+
+    weatherLink.href = '';
+    weatherLink.textContent = '';
+
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+
+      weatherStatus.textContent = '';
+      weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=imperial`;
+      (async () => {
+        const res = await fetch(weatherLink.href, {
+          headers: { Accept: 'application/json' },
+        });
+        const json = await res.json();
+        Object.entries(json["current"]).forEach(([key, value]) => {
+          if (key != "weather") {
+            console.log(`${key}: ${value}`);
+            var span = document.createElement('span');
+            span.className = "country-users";
+            document.querySelector('.google-text-block').appendChild(span);
+            document.querySelector('.google-text-block').appendChild(document.createElement('br'));
+            if (key == "sunset" || key == "sunrise" || key == "dt") {
+              span.innerHTML = `${key}: ${timeConvert(value)}`;
+            }
+            else
+              span.innerHTML = `${key}: ${value}`;
+            // if (key == "temp")
+            //   weatherLink.textContent = `${key}: ${value}`;
+          }
+        });
+      })();
+      // weatherLink.textContent = JSON.parse(weatherLink);
+    }
+
+    function error() {
+      weatherStatus.textContent = 'Unable to retrieve your weather';
+    }
+
+    if (!navigator.geolocation) {
+      weatherStatus.textContent = 'Geolocation is not supported by your browser';
+    } else {
+      weatherStatus.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+
+  }
+
+  document.querySelector('#weather-me').addEventListener('click', geoWeatherMe);
+    // document.querySelector('#weather-me').addEventListener('click', geoWeatherMe);
+    // document.querySelector('#weather-me').addEventListener('DOMContentLoaded', geoWeatherMe);
+
+
+
+</script>
+
 </html>
