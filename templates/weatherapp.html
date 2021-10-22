@@ -11,7 +11,7 @@
 
 <body>
 
- <h2 style="text-align:center">Weatherman</h2>
+ <h2 class="title">Weatherman</h2>
 
   <div class="search-box" align="center">
       <input type="text" id="txtbox" class="search-bar" placeholder="Search...">
@@ -24,9 +24,9 @@
     </div>
   </div>
 
-  <div class="weather-box" align="center">
+  <div class="weather-box">
     <div class="weather-image" align="center">
-      <img src="sunny.png">
+      <img src="img/sunny.png">
     </div>
     <div class="weather">
       Sunny
@@ -34,21 +34,46 @@
     <div class="temp">
       27'c
     </div>
-  
+  </div>
+
+  <div class="weather-aspect" align="center">
+    <div class="sunrise">
+      <img src="img/sunrise.png" alt="sun" style="width:25%" class="sunup">
+      <p>Sunrise</p>
+      <p>data here</p>
+    </div>
+    <div class="wind">
+      <img src="img/windy.png" alt="wind" style="width:25%" class="air">
+      <p>Wind</p>
+      <p>data here</p>
+    </div>
+    <div class="humidity">
+      <img src="img/humidity.png" alt="humidity" style="width:25%" class="humid">
+      <p>Humidity</p>
+      <p>data here</p>
+    </div>
+    <div class="visibility">
+      <img src="img/visible.png" alt="visibility" style="width:25%" class="visible">
+      <p>Visibility</p>
+      <p>data here</p>
+    </div>
+    <div class="temperature">
+      <img src="img/temperature.png" alt="temperature" style="width:25%" class="temps">
+      <p>Feels Like</p>
+      <p>data here</p>
+    </div>
+    <div class="sunset">
+      <img src="img/sunset.png" alt="sun" style="width:25%" class="sundown">
+      <p>Sunset</p>
+      <p>data here</p>
+    </div>
   </div>
 
 
-
-
-
-
-
-
-
+  
 
 
   <div align=“center”>
-    <h1>Weather in your city</h1>
     <form action=“” method=“get”>
       <input type=“text” id=“city” name=“city” placeholder=“Enter city”>
       <input type=“submit” name=“send” value=“Search”>
