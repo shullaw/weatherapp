@@ -7,10 +7,19 @@
   <meta charset=“UTF-8”>
   <title>WeatherApp</title>
   <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <style>
+    body {
+      background-image: url('{% static 'img/background_img.jpg' %}');
+      background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    }
+    </style>
 </head>
 
 <body>
+  <!-- <div style="background-image: url({% static 'img/background_img.jpg' %});"> -->
 
  <h2 class="title">Weatherman</h2>
 
@@ -94,7 +103,6 @@
     <br>
     <span class="numb"></span>
   </div>
-
 </body>
 <!----- Geolocation Javascript issue #29 ----->
 <script>
