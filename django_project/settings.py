@@ -46,10 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add newly defined Django apps here
+    'weatherapp',
     'bootstrap4',
     'bootstrap_datepicker_plus',
     'users',
-    'weatherapp',
 ]
 
 MIDDLEWARE = [
@@ -136,11 +136,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# FOR DEPLOYMENT
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 ##-- Add additional image directory to static files (for issue #29) --##
+# FOR DEVELOPMENT #
 STATICFILES_DIRS = [
-    BASE_DIR / "staticfiles"
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 #  Add configuration for static files storage using whitenoise
