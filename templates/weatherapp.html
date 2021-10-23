@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <!--THIS IS THE FILE BEING USED FOR HOMEPAGE, NOT IN weatherapp/templates-->
 <html lang=“en”>
@@ -20,13 +21,13 @@
 
   <div class="location-box" align="center">
     <div class="location"> City Name</div>
-    <div class="date">---------Get day date month here---------
-    </div>
+    <div class="date">Get day date month here
+</div>
   </div>
 
   <div class="weather-box">
     <div class="weather-image" align="center">
-      <img src="img/sunny.png">
+      <img src="{% static 'img/sunny.png' %}">
     </div>
     <div class="weather">
       Sunny
@@ -38,32 +39,32 @@
 
   <div class="weather-aspect" align="center">
     <div class="sunrise">
-      <img src="img/sunrise.png" alt="sun" style="width:25%" class="sunup">
+      <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:25%" class="sunup">
       <p>Sunrise</p>
       <p>data here</p>
     </div>
     <div class="wind">
-      <img src="img/windy.png" alt="wind" style="width:25%" class="air">
+      <img src="{% static 'img/windy.png' %}" alt="wind" style="width:25%" class="air">
       <p>Wind</p>
       <p>data here</p>
     </div>
     <div class="humidity">
-      <img src="img/humidity.png" alt="humidity" style="width:25%" class="humid">
+      <img src="{% static 'img/humidity.png' %}" alt="humidity" style="width:25%" class="humid">
       <p>Humidity</p>
       <p>data here</p>
     </div>
     <div class="visibility">
-      <img src="img/visible.png" alt="visibility" style="width:25%" class="visible">
+      <img src="{% static 'img/visible.png' %}" alt="visibility" style="width:25%" class="visible">
       <p>Visibility</p>
       <p>data here</p>
     </div>
     <div class="temperature">
-      <img src="img/temperature.png" alt="temperature" style="width:25%" class="temps">
+      <img src="{% static 'img/temperature.png' %}" alt="temperature" style="width:25%" class="temps">
       <p>Feels Like</p>
       <p>data here</p>
     </div>
     <div class="sunset">
-      <img src="img/sunset.png" alt="sun" style="width:25%" class="sundown">
+      <img src="{% static 'img/sunset.png' %}" alt="sun" style="width:25%" class="sundown">
       <p>Sunset</p>
       <p>data here</p>
     </div>
