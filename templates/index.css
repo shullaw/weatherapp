@@ -1,0 +1,183 @@
+body{
+    background-image: url('img/image.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.title{
+    position: relative;
+    margin: 0px auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 15px 25px;
+
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.search-box{
+    width: 100%;
+    padding-top: 20px;
+    width: 100%;
+    margin: 0 0 5px;
+}
+
+.search-box .search-bar{
+    display: block;
+    width: 500px;
+    padding: 15px;
+
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px 16px 16px 16px;
+
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+
+    color: #313131;
+    font-size: 20px;
+
+    transition: 0.5s ease;
+}
+.search-bar .search-box{
+    background-color: rgba(255, 255, 255, 0.75)
+}
+
+.location-box .location{
+    color: #fff;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.location-box .date{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+}
+
+.weather-box{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.weather-box .temp{
+    position: relative;
+    display: inline-block;
+    margin: 0px auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+
+    padding: 15px 25px;
+
+    color: #fff;
+    font-size: 40px;
+    font-weight: 900;
+
+    text-align: center;
+    text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.weather-box .weather{
+    position: relative;
+    display: inline-block;
+    margin: 0px auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 15px 25px;
+
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.weather-image img{
+    padding-top: 20px;
+    width: 150px;
+    height: 150px;
+}
+
+.weather-aspect{
+    position: relative;
+    display: flow-root;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 15px 25px;
+
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.weather-aspect .sunrise{
+    float:left;
+    width:180px;
+    height:160px;
+    margin-inline: 30px;
+}
+
+.weather-aspect .sunrise .sunup{
+    padding-top: 25px;
+}
+.weather-aspect .wind .air{
+    padding-top: 25px;
+}
+.weather-aspect .humidity .humid{
+    padding-top: 25px;
+}
+.weather-aspect .visibility .visible{
+    padding-top: 25px;
+}
+.weather-aspect .temperature .temps{
+    padding-top: 25px;
+}
+.weather-aspect .sunset .sundown{
+    padding-top: 25px;
+}
+
+.weather-aspect .wind{
+    float:left;
+    width:180px;
+    height:160px;
+}
+
+.weather-aspect .humidity{
+    float:left;
+    width:180px;
+    height:160px;
+}
+
+.weather-aspect .visibility{
+    float:left;
+    width:180px;
+    height:160px;
+}
+
+.weather-aspect .temperature{
+    float:left;
+    width:180px;
+    height:160px;
+}
+.weather-aspect .sunset{
+    float:left;
+    width:180px;
+    height:160px;
+}
