@@ -12,43 +12,39 @@
     body {
       background-image: url('{% static 'img/background_img.jpg' %}');
       background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
+      background-attachment: fixed;
+      background-size: 100% 100%;
     }
-    </style>
+  </style>
 </head>
 
 <body>
- <h2 class="title">Weatherman</h2>
+  <h2 class="title">Weatherman</h2>
 
   <div class="search-box" align="center">
-      <input type="text" id="txtbox" class="search-bar" placeholder="Search...">
-    </div>
+    <input type="text" id="txtbox" class="search-bar" placeholder="Search...">
+  </div>
   </div>
 
   <div class="location-box" align="center">
-    <div class="location"> City Name</div>
-    <div class="date">Get day date month here
-</div>
+    <div class="location"></div>
+    <div id="time"> </div>
+    <div id="cur_date"></div>
+    <div class="date">
+    </div>
   </div>
 
   <div class="weather-box">
     <div class="weather-image" align="center">
-      <img src="{% static 'img/sunny.png' %}">
     </div>
-    <div class="weather">
-      Sunny
-    </div>
-    <div class="temp">
-      27'c
-    </div>
+    <!-- <div class="weather"></div>
+    <div class="temp"></div> -->
   </div>
 
   <div class="weather-aspect" align="center">
     <div class="sunrise">
       <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:25%" class="sunup">
       <p>Sunrise</p>
-      <p>data here</p>
     </div>
     <div class="wind">
       <img src="{% static 'img/windy.png' %}" alt="wind" style="width:25%" class="air">
@@ -78,7 +74,7 @@
   </div>
 
 
-  
+
 
 
   <div align=“center”>
@@ -95,6 +91,8 @@
   <button id="weather-me">Show Weather for My Location!</button><br />
   <p id="weather-status"></p>
   <a id="weather-link" target="_blank"></a>
+  <p id="weather-location"></p>
+  <a id="location-link" target="_blank"></a>
 
   <div class="google-text-block">
     <span class="users-numb"></span>
@@ -147,7 +145,7 @@
     var hours = date.getHours();
     if (hours > 12)
       hours = hours - 12;
-      var night = true;
+    var night = true;
     // Minutes part from the timestamp
     var minutes = "0" + date.getMinutes();
     // Seconds part from the timestamp
@@ -155,7 +153,7 @@
     // Will display time in HH:MM:SS format
     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
     // Add AM/PM to end of string
-    if (night) 
+    if (night)
       formattedTime = formattedTime + ' PM';
     else
       formattedTime = formattedTime + ' AM';
@@ -170,17 +168,24 @@
 
     const weatherStatus = document.querySelector('#weather-status');
     const weatherLink = document.querySelector('#weather-link');
+    const weatherLocation = document.querySelector('#weather-location');
+    const locationLink = document.querySelector('#location-link');
 
     weatherLink.href = '';
     weatherLink.textContent = '';
+    locationLink.href = '';
+    locationLink.textContent = '';
 
     function success(position) {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-
+      console.log(latitude);
+      console.log(longitude);
 
       weatherStatus.textContent = '';
       weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=imperial`;
+      weatherLocation.textContent = '';
+      locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=imperial`;
       (async () => {
         const res = await fetch(weatherLink.href, {
           headers: { Accept: 'application/json' },
@@ -188,24 +193,48 @@
         const json = await res.json();
         Object.entries(json["current"]).forEach(([key, value]) => {
           if (key != "weather") {
-            console.log(`${key}: ${value}`);
+            // console.log(`${key}: ${value}`);
             var span = document.createElement('span');
-            span.className = "country-users";
-            document.querySelector('.google-text-block').appendChild(span);
-            document.querySelector('.google-text-block').appendChild(document.createElement('br'));
-            if (key == "sunset" || key == "sunrise" || key == "dt") {
-              span.innerHTML = `${key}: ${timeConvert(value)}`;
+            if (key == "temp") {
+              span.className = "weather";
+              document.querySelector('.weather-box').appendChild(span);
+              document.querySelector('.weather-box').appendChild(document.createElement('br'));
+              span.innerHTML = `${value}`;
             }
-            else
-              span.innerHTML = `${key}: ${value}`;
-            // if (key == "temp")
-            //   weatherLink.textContent = `${key}: ${value}`;
+            else if (key == "sunset" || key == "sunrise" || key == "dt") {
+              var p = document.createElement('p');
+              p.innerHTML = `${timeConvert(value)}`;
+              if (key == "sunrise") {
+                document.getElementsByClassName("sunrise")[0].appendChild(p);
+              }
+              else if (key == "sunset") {
+                document.getElementsByClassName("sunset")[0].appendChild(p);
+              }
+              else if (key == "dt") {
+                document.getElementsByClassName("date")[0].appendChild(p);
+              }
+            }
+            else if (key == "wind_speed" || key == "wind_deg" || key == "wind_gust") {
+              var p = document.createElement('p');
+              document.getElementsByClassName("wind")[0].appendChild(p);
+              p.innerHTML = `${key}: ${value}`;
+            }
+
           }
         });
       })();
-      // weatherLink.textContent = JSON.parse(weatherLink);
+    
+    (async () => {
+        const res = await fetch(locationLink.href, {
+          headers: { Accept: 'application/json' },
+        });
+        const json = await res.json();
+        console.log(json['name']);
+        var p = document.createElement('p');
+        document.getElementsByClassName("location")[0].appendChild(p);
+        p.innerHTML = json['name'];
+      })();
     }
-
     function error() {
       weatherStatus.textContent = 'Unable to retrieve your weather';
     }
@@ -219,17 +248,42 @@
 
   }
 
-    document.querySelector('#weather-me').addEventListener('click', geoWeatherMe);
-    // document.querySelector('#weather-me').addEventListener('DOMContentLoaded', geoWeatherMe);
+  document.querySelector('#weather-me').addEventListener('click', geoWeatherMe);
+  // document.querySelector('#weather-me').addEventListener('DOMContentLoaded', geoWeatherMe);
 
 
-if (document.readyState === 'loading') {  // Loading hasn't finished yet
-  document.addEventListener('DOMContentLoaded', geoWeatherMe);
-} else {  // `DOMContentLoaded` has already fired
-  geoWeatherMe();
-}
+  if (document.readyState === 'loading') {  // Loading hasn't finished yet
+    document.addEventListener('DOMContentLoaded', geoWeatherMe);
+  } else {  // `DOMContentLoaded` has already fired
+    geoWeatherMe();
+  }
 
 
 </script>
+<script>
+function updateClock() {
+      var now = new Date(),
+      months = ['January', 'February', '...'];
+      var hours = now.getHours();
+      var mins = now.getMinutes();
+      var secs = now.getSeconds();
+      if (hours < 10){hours = "0"+hours;}
+      if (mins < 10){mins = "0"+mins;} 
+      if (secs < 10){secs = "0"+secs;}
+      time = hours + ':' + mins +  ':' + secs,
 
+      date = [now.getDate(), 
+              months[now.getMonth()],
+              now.getFullYear()].join(' ');
+
+  document.getElementById('time').innerHTML = now.toString().substr(0,24);
+  document.getElementById('time').style.color="white";
+  document.getElementById('time').style.color="white";
+  document.getElementById('time').style.fontSize="20px";
+  document.getElementById('time').style.textShadow="2px 2px rgba(50, 50, 70, 0.5)";
+
+  setTimeout(updateClock, 1000);
+}
+updateClock(); // initial call
+</script>
 </html>
