@@ -269,24 +269,23 @@ function updateClock() {
       var hours = now.getHours();
       var mins = now.getMinutes();
       var secs = now.getSeconds();
-      if (hours < 10){hours = "0"+hours;}
       if (mins < 10){mins = "0"+mins;} 
       if (secs < 10){secs = "0"+secs;}
 
       // date = [now.getDate(), 
       //         months[now.getMonth()],
       //         now.getFullYear()].join(' ');
+      time = hours + ':' + mins +  ':' + secs;
       date = now.toString().substr(0,16);
       if (hours > 12) {
         hours = hours - 12;
         let pm = "PM";
         time = [time, pm].join(' ');
+        log.console.log(typeof time);
       } else {
         let am = "AM";
         time = [time, am].join(' ');
       }
-      time = hours + ':' + mins +  ':' + secs,
-
   
   document.getElementById('time').innerHTML = [date, time ].join('');
   document.getElementById('time').style.color="white";
