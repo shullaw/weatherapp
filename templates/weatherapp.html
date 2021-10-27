@@ -19,6 +19,8 @@
 </head>
 
 <body>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+
   <h2 class="title">Weatherman</h2>
 
   <div class="search-box" align="center">
@@ -270,13 +272,23 @@ function updateClock() {
       if (hours < 10){hours = "0"+hours;}
       if (mins < 10){mins = "0"+mins;} 
       if (secs < 10){secs = "0"+secs;}
+
+      // date = [now.getDate(), 
+      //         months[now.getMonth()],
+      //         now.getFullYear()].join(' ');
+      date = now.toString().substr(0,16);
+      if (hours > 12) {
+        hours = hours - 12;
+        let pm = "PM";
+        time = [time, pm].join(' ');
+      } else {
+        let am = "AM";
+        time = [time, am].join(' ');
+      }
       time = hours + ':' + mins +  ':' + secs,
 
-      date = [now.getDate(), 
-              months[now.getMonth()],
-              now.getFullYear()].join(' ');
-
-  document.getElementById('time').innerHTML = now.toString().substr(0,24);
+  
+  document.getElementById('time').innerHTML = [date, time ].join('');
   document.getElementById('time').style.color="white";
   document.getElementById('time').style.color="white";
   document.getElementById('time').style.fontSize="20px";
