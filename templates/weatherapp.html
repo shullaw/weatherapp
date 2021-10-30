@@ -46,10 +46,13 @@
     <div class="sunrise">
       <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:25%" class="sunup">
       <p>Sunrise</p>
+      <p>data here</p>
     </div>
     <div class="wind">
       <img src="{% static 'img/windy.png' %}" alt="wind" style="width:25%" class="air">
       <p>Wind</p>
+      <p>data here</p>
+      <p>data here</p>
       <p>data here</p>
     </div>
     <div class="humidity">
@@ -63,7 +66,7 @@
       <p>data here</p>
     </div>
     <div class="temperature">
-      <img src="{% static 'img/temperature.png' %}" alt="temperature" style="width:25%" class="temps">
+      <img src="{% static 'img/temperature.png' %}" alt="feels_like" style="width:25%" class="temps">
       <p>Feels Like</p>
       <p>data here</p>
     </div>
@@ -144,9 +147,12 @@
     var date = new Date(unix_timestamp * 1000);
     // Hours part from the timestamp
     var hours = date.getHours();
-    if (hours > 12)
+    if (hours > 12) {
       hours = hours - 12;
-    var night = true;
+      var night = true;
+    } else {
+      var night = false;
+    }
     // Minutes part from the timestamp
     var minutes = "0" + date.getMinutes();
     // Seconds part from the timestamp
@@ -166,7 +172,6 @@
 <!----- Geolocation Javascript issue #29 ----->
 <script>
   function geoWeatherMe() {
-
     const weatherStatus = document.querySelector('#weather-status');
     const weatherLink = document.querySelector('#weather-link');
     const weatherLocation = document.querySelector('#weather-location');
@@ -183,12 +188,11 @@
       console.log(latitude);
       console.log(longitude);
 
+      // console.log("Inside1: " + geoWeatherMe.unit);
       weatherStatus.textContent = '';
-      weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=imperial`;
+      weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
       weatherLocation.textContent = '';
-      locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=imperial`;
-      let temp_unitF = "F";
-      let temp_unitC = "C";
+      locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
       (async () => {
         const res = await fetch(weatherLink.href, {
           headers: { Accept: 'application/json' },
@@ -201,31 +205,49 @@
             var button = document.querySelector('.weather');
             if (key == "temp") {
               let deg = "°";
-              document.querySelector('.weather-box').appendChild(button);
-              document.querySelector('.weather-box').appendChild(document.createElement('br'));
               let temp_deg = `${value}${deg}`;
-              button.innerHTML = [temp_deg, temp_unitF].join(' ');
+              button.innerHTML = temp_deg;
+              if (geoWeatherMe.unit == "imperial") {
+                button.innerHTML = [temp_deg, "F"].join(' ');
+              }
+              else {
+                button.innerHTML = [temp_deg, "C"].join(' ');
+              }
             }
             else if (key == "sunset" || key == "sunrise" || key == "dt") {
-              var p = document.createElement('p');
+              var p = document.querySelector(".weather");
               p.innerHTML = `${timeConvert(value)}`;
               if (key == "sunrise") {
-                document.getElementsByClassName("sunrise")[0].appendChild(p);
+                document.querySelector(".sunrise").children[2].innerText = `${timeConvert(value)}`;
               }
               else if (key == "sunset") {
-                document.getElementsByClassName("sunset")[0].appendChild(p);
+                document.querySelector(".sunset").children[2].innerText = `${timeConvert(value)}`;
               }
               else if (key == "dt") {
-                document.getElementsByClassName("date")[0].appendChild(p);
+                document.querySelector(".date").innerHTML = `${timeConvert(value)}`;
               }
             }
-            else if (key == "wind_speed" || key == "wind_deg" || key == "wind_gust") {
-              var p = document.createElement('p');
-              document.getElementsByClassName("wind")[0].appendChild(p);
-              p.innerHTML = `${key}: ${value}`;
+            else if (key == "feels_like") {
+              document.querySelector(".temperature").children[2].innerHTML = `${value}` + "°";
             }
+            else if (key == "visibility") {
+              document.querySelector(".visibility").children[2].innerHTML = `${value}`;
+            }
+            else if (key == "humidity") {
+              document.querySelector(".humidity").children[2].innerHTML = `${value}%`;
+            }
+            else if (key == "wind_speed") {
+              document.querySelector(".wind").children[2].innerHTML = `${key}: ${value}`;
+            }
+            else if (key == "wind_deg") {
+              document.querySelector(".wind").children[3].innerHTML = `${key}: ${value}`;
+            }
+            else if (key == "wind_gust") {
+              document.querySelector(".wind").children[4].innerHTML = `${key}: ${value}`;
 
+            }
           }
+
         });
       })();
 
@@ -235,9 +257,7 @@
         });
         const json = await res.json();
         console.log(json['name']);
-        var p = document.createElement('p');
-        document.getElementsByClassName("location")[0].appendChild(p);
-        p.innerHTML = json['name'];
+        document.querySelector('.location').innerHTML = `${json['name']}`;
       })();
     }
     function error() {
@@ -252,25 +272,31 @@
     }
 
   }
+
   if (document.readyState === 'loading') {  // Loading hasn't finished yet
     document.addEventListener('DOMContentLoaded', geoWeatherMe);
+    geoWeatherMe.unit = "imperial";
+    // console.log("Not loaded inside: " + geoWeatherMe.unit);
   } else {  // `DOMContentLoaded` has already fired
     geoWeatherMe();
+    // console.log("Loaded inside: " + geoWeatherMe.unit);
 
   }
-
-
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const weather_button = document.querySelector('.weather');
     weather_button.addEventListener('click', function () {
       // alert("Click");
-      if (weather_button.innerHTML[7] == "F") {
-        weather_button.innerHTML = weather_button.innerHTML.replace("F", "C");
+      if (geoWeatherMe.unit == "imperial") {
+        geoWeatherMe.unit = "metric";
+        geoWeatherMe();
+        // console.log("Loaded outsideC: " + geoWeatherMe.unit);
       }
       else {
-        weather_button.innerHTML = weather_button.innerHTML.replace("C", "F");
+        geoWeatherMe.unit = "imperial";
+        geoWeatherMe();
+        // console.log("Loaded outsideF: " + geoWeatherMe.unit);
       }
     });
   });
@@ -285,18 +311,15 @@
     var secs = now.getSeconds();
     if (mins < 10) { mins = "0" + mins; }
     if (secs < 10) { secs = "0" + secs; }
-
-    time = hours + ':' + mins + ':' + secs;
-    date = now.toString().substr(0, 16);
     if (hours > 12) {
       hours = hours - 12;
-      let pm = "PM";
-      time = [time, pm].join(' ');
-      log.console.log(typeof time);
+      time = hours + ':' + mins + ':' + secs;
+      time = [time, "PM"].join(' ');
     } else {
-      let am = "AM";
-      time = [time, am].join(' ');
+      time = hours + ':' + mins + ':' + secs;
+      time = [time, "AM"].join(' ');
     }
+    date = now.toString().substr(0, 16);
 
     document.getElementById('time').innerHTML = [date, time].join('');
     document.getElementById('time').style.color = "white";
