@@ -1,6 +1,6 @@
 .title{
     position: relative;
-    margin: 0px auto;
+    margin: 32px 32px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: 15px 25px;
@@ -87,7 +87,7 @@
 .weather-box .weather{
     position: relative;
     display: inline-block;
-    margin: 0px auto;
+    margin: 3px 34px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: 15px 25px;
@@ -110,14 +110,12 @@
 .weather-aspect{
     position: relative;
     display: flow-root;
-    margin: 10px auto;
+    margin: 10px 32px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: 15px 25px;
 
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
     text-align: center;
     box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
@@ -127,6 +125,8 @@
     width:180px;
     height:160px;
     margin-inline: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .weather-aspect .sunrise .sunup{
@@ -175,4 +175,146 @@
     float:left;
     width:180px;
     height:160px;
+}
+
+/* attributes for weekly forecast */
+.week-data{
+    overflow: hidden;
+    margin: 32px 32px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    color: transparent;
+
+    font-family: 'Cambay', sans-serif;
+    font-size: 8vw;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.03em;
+    padding-bottom: 15px;
+}
+  
+  .week-data > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #ffff64;
+    pointer-events: none;
+  }
+  
+  .week-data > div:nth-child(1) {
+    -webkit-mask-image: linear-gradient(black 25%, transparent 25%);
+    mask-image: linear-gradient(black 25%, transparent 25%);
+    animation: week-data1 5s infinite;
+  }
+  
+  .week-data > div:nth-child(2) {
+    -webkit-mask-image: linear-gradient(transparent 25%, black 25%, black 50%, transparent 50%);
+    mask-image: linear-gradient(transparent 25%, black 25%, black 50%, transparent 50%);
+    animation: week-data2 5s infinite;
+  }
+  
+  .week-data > div:nth-child(3) {
+     -webkit-mask-image: linear-gradient(transparent 50%, black 50%, black 75%, transparent 75%);
+    mask-image: linear-gradient(transparent 50%, black 50%, black 75%, transparent 75%);
+    animation: week-data3 5s infinite;
+  }
+  
+  .week-data > div:nth-child(4) {
+     -webkit-mask-image: linear-gradient(transparent 75%, black 75%);
+    mask-image: linear-gradient(transparent 75%, black 75%);
+    animation: week-data4 5s infinite;
+  }
+  
+  @keyframes week-data1 {
+    0% {
+      transform: translateX(100%);
+    }
+    26% {
+      transform: translateX(0%);
+    }
+    83% {
+      transform: translateX(-0.1%);
+    }
+    100% {
+      transform: translateX(-120%);
+    }
+  }
+  
+  @keyframes week-data2 {
+    0% {
+      transform: translateX(100%);
+    }
+    24% {
+      transform: translateX(0.5%);
+    }
+    82% {
+      transform: translateX(-0.2%);
+    }
+    100% {
+      transform: translateX(-125%);
+    }
+  }
+  
+  @keyframes week-data3 {
+    0% {
+      transform: translateX(100%);
+    }
+    22% {
+      transform: translateX(0%);
+    }
+    81% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-130%);
+    }
+  }
+  
+  @keyframes week-data4 {
+    0% {
+      transform: translateX(100%);
+    }
+    20% {
+      transform: translateX(0%);
+    }
+    80% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-135%);
+    }
+  }
+
+/* attributes for weekly forecast end */
+
+.container{
+    width: 100%;
+    position: relative;
+    display: flex;
+    gap: 10px;
+}
+
+.container .card{
+    float: left;
+}
+
+.columns{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2 px rgba(0, 0, 0, 0.24);
+    background: #fff;
+    border-radius: 10px;
+}
+
+.card{
+    height: 200px;
+    padding: 10px 15px;
+}
+
+.container .card p{
+    text-align: center;
 }
