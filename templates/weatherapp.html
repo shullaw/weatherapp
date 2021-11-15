@@ -111,4 +111,79 @@
   <script type="text/javascript" src="{% static 'js/updateclock.js' %}"></script>
   <!--Scripts for Geolocation, OpenWeatherAPI, Time Conversion, Unit Conversion, Event Listeners-->
 
+ <div class="week-data">
+    Weekly forecast
+    <div>Weekly forecast</div>
+    <div>Weekly forecast</div>
+    <div>Weekly forecast</div>
+    <div>Weekly forecast</div>
+  </div>
+
+  <!--box-slider-->
+ 
+  <div class="container">
+      <div class="card">
+        <h5 style="text-align:center"> Monday </h5>
+        <!-- all temperature in degree celsius --> 
+        <!-- need to be applied for all days-->    
+        <!-- we need to add logic here in javascript if temp is equal or greater than 20 degree we show sunny image -->  
+        <img src="{% static 'img/weekcloud.png' %}" alt="cloud" class="cloud">
+        <!-- data here-->
+        <p>19'C</p>
+        
+        <!--
+          we need to add logic here in javascript if wind speed is equal or greater than 25 mph we show windy image 
+          <img src="{% static 'img/weekwindy.png' %}" alt="wind" class="wind">
+
+          we need to add logic here in javascript if temp is equal or less than 0 degree we show snowy image
+          <img src="{% static 'img/weeksnowy.png' %}" alt="snow" class="snow">
+
+          we need to add logic here in javascript if temp is less than  12 degree celsius and greater than 0 degree we show cold image
+          <img src="{% static 'img/cold.png' %}" alt="cold" class="cold">
+
+          we need to add logic here in javascript use weatherapi for rainy data
+          <img src="{% static 'img/weekrainy.png' %}" alt="rain" class="rain">
+
+          we need to add logic here in javascript if temp is equal or greater than 20 degree we show sunny image
+          <img src="{% static 'img/weeksunny.png' %}" alt="sun" class="sun">
+        -->  
+      </div>
+
+      <div class="card">
+        <h5 style="text-align:center"> Tuesday </h5>
+        <img src="{% static 'img/weekcloud.png' %}" alt="cloud" class="cloud">
+        <p>19'C</p>
+      </div>
+
+      <div class="card">
+        <h5 style="text-align:center"> Wednesday </h5>
+        <img src="{% static 'img/weeksnowy.png' %}" alt="snow" class="snow">
+        <p>19'C</p>
+      </div>
+
+      <div class="card">
+        <h5 style="text-align:center"> Thursday </h5>
+        <img src="{% static 'img/weeksunny.png' %}" alt="sun" class="sun">
+        <p>19'C</p>
+      </div>
+
+      <div class="card">
+        <h5 style="text-align:center"> Friday </h5>
+        <img src="{% static 'img/weekrainy.png' %}" alt="rain" class="rain">
+        <p>19'C</p>
+      </div>
+
+      <div class="card">
+        <h5 style="text-align:center"> Saturday </h5>
+        <img src="{% static 'img/cold.png' %}" alt="cold" class="cold">
+        <p>19'C</p>
+      </div>
+
+      <div class="card">
+        <h5 style="text-align:center"> Sunday </h5>
+        <img src="{% static 'img/weeksunny.png' %}" alt="sun" class="sun">
+        <p>19'C</p>
+      </div>
+
+  </div>
 </html>
