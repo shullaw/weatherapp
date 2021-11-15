@@ -39,15 +39,13 @@
 </head>
 
 <body>
-  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
 
   <h2 class="title">Weatherman</h2>
-
   <div class="search-box" align="center">
     <input type="text" id="txtbox" class="search-bar" placeholder="Search...">
   </div>
   </div>
-
   <div class="location-box" align="center">
     <div class="location"></div>
     <div id="time"> </div>
@@ -55,300 +53,62 @@
     <div class="date">
     </div>
   </div>
-
   <div class="weather-box">
-    <button class="btn purple-gradient btn-rounded btn-hover weather animated zoomIn"></button>
+    <div class="row" style="position:relative">
+      <!-- <p id="before" style="color:white; position:relative;  margin:0 auto"></p> -->
+      <button class="btn purple-gradient btn-rounded btn-hover weather animated zoomIn"></button>
+      <!-- <p id="after" style="color:white; position:relative; margin:0 auto"></p> -->
+    </div>
   </div>
-<!-- 
-<div class="view overlay">
-  <img src="https://mdbootstrap.com/img/Photos/Others/forest-sm.jpg" class="img-fluid " alt="smaple image">
-  <div class="mask flex-center rgba-red-strong">
-      <p class="white-text">Strong overlay</p>
   </div>
-</div> -->
-
-  <div class="weather-aspect" align="center">
+  <div class="weather-aspect" style="width:fit-content; margin:0 auto; height:auto; justify-content: center;">
     <div class="sunrise">
-      <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:25%" class="sunup">
+      <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:50%" class="sunup">
       <p>Sunrise</p>
       <p>data here</p>
     </div>
+
     <div class="wind">
-      <img src="{% static 'img/windy.png' %}" alt="wind" style="width:25%" class="air">
+      <img src="{% static 'img/windy.png' %}" alt="wind" style="width:50%" class="air">
       <p>Wind</p>
-      <p>data here</p>
       <p>data here</p>
     </div>
     <div class="humidity">
-      <img src="{% static 'img/humidity.png' %}" alt="humidity" style="width:25%" class="humid">
+      <img src="{% static 'img/humidity.png' %}" alt="humidity" style="width:50%" class="humid">
       <p>Humidity</p>
       <p>data here</p>
     </div>
     <div class="visibility">
-      <img src="{% static 'img/visible.png' %}" alt="visibility" style="width:25%" class="visible">
+      <img src="{% static 'img/visible.png' %}" alt="visibility" style="width:50%" class="visible">
       <p>Visibility</p>
       <p>data here</p>
     </div>
     <div class="temperature">
-      <img src="{% static 'img/temperature.png' %}" alt="feels_like" style="width:25%" class="temps">
+      <img src="{% static 'img/temperature.png' %}" alt="feels_like" style="width:50%" class="temps">
       <p>Feels Like</p>
       <p>data here</p>
     </div>
     <div class="sunset">
-      <img src="{% static 'img/sunset.png' %}" alt="sun" style="width:25%" class="sundown">
+      <img src="{% static 'img/sunset.png' %}" alt="sun" style="width:50%" class="sundown">
       <p>Sunset</p>
       <p>data here</p>
     </div>
   </div>
 
-
-
-
-
-  <!-- <div align=“center”>
-    <form action=“” method=“get”>
-      <input type=“text” id=“city” name=“city” placeholder=“Enter city”>
-      <input type=“submit” name=“send” value=“Search”>
-    </form>
-  </div> -->
-  <!----- Geolocation Javascript issue #29 ----->
-  <!-- <button id="find-me">Show My Location</button><br /> -->
   <p id="status"></p>
   <a id="map-link" target="_blank"></a>
 
-  <!-- <button id="weather-me">Show Weather for My Location!</button><br /> -->
   <p id="weather-status"></p>
   <a id="weather-link" target="_blank"></a>
   <p id="weather-location"></p>
   <a id="location-link" target="_blank"></a>
 
-  <!-- <div class="google-text-block">
-    <span class="users-numb"></span>
-    <br>
-    <span class="numb"></span>
-  </div>
-</body> -->
-<!----- Geolocation Javascript issue #29 ----->
-<script>
-  function geoFindMe() {
-
-    const status = document.querySelector('#status');
-    const mapLink = document.querySelector('#map-link');
-
-    mapLink.href = '';
-    mapLink.textContent = '';
-
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      status.textContent = '';
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-    }
-
-    function error() {
-      status.textContent = 'Unable to retrieve your location';
-    }
-
-    if (!navigator.geolocation) {
-      status.textContent = 'Geolocation is not supported by your browser';
-    } else {
-      status.textContent = 'Locating…';
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-
-  }
-
-  // document.querySelector('#find-me').addEventListener('click', geoFindMe);
-</script>
-<!--Sunrise/Sunset UNIX TIME CONVERSION-->
-<script>
-  function timeConvert(time) {
-    let unix_timestamp = time;
-    // Create a new JavaScript Date object based on the timestamp
-    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    var date = new Date(unix_timestamp * 1000);
-    // Hours part from the timestamp
-    var hours = date.getHours();
-    if (hours > 12) {
-      hours = hours - 12;
-      var night = true;
-    } else {
-      var night = false;
-    }
-    // Minutes part from the timestamp
-    var minutes = "0" + date.getMinutes();
-    // Seconds part from the timestamp
-    var seconds = "0" + date.getSeconds();
-    // Will display time in HH:MM:SS format
-    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    // Add AM/PM to end of string
-    if (night)
-      formattedTime = formattedTime + ' PM';
-    else
-      formattedTime = formattedTime + ' AM';
-
-    // console.log(formattedTime);
-    return formattedTime;
-  }
-</script>
-<!----- Geolocation Javascript issue #29 ----->
-<script>
-  function geoWeatherMe() {
-    const weatherStatus = document.querySelector('#weather-status');
-    const weatherLink = document.querySelector('#weather-link');
-    const weatherLocation = document.querySelector('#weather-location');
-    const locationLink = document.querySelector('#location-link');
-
-    weatherLink.href = '';
-    weatherLink.textContent = '';
-    locationLink.href = '';
-    locationLink.textContent = '';
-
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log(latitude);
-      console.log(longitude);
-
-      // console.log("Inside1: " + geoWeatherMe.unit);
-      weatherStatus.textContent = '';
-      weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
-      weatherLocation.textContent = '';
-      locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
-      (async () => {
-        const res = await fetch(weatherLink.href, {
-          headers: { Accept: 'application/json' },
-        });
-        const json = await res.json();
-        Object.entries(json["current"]).forEach(([key, value]) => {
-          if (key != "weather") {
-            var button = document.querySelector('.weather');
-            if (button) {
-              document.querySelector('.weather').replaceWith(document.querySelector('.weather'))
-            }
-            if (key == "temp") {
-              let deg = "°";
-              let temp_deg = `${value}${deg}`;
-              button.innerHTML = temp_deg;
-              if (geoWeatherMe.unit == "imperial") {
-                button.innerHTML = [temp_deg, "F"].join(' ');
-              }
-              else {
-                button.innerHTML = [temp_deg, "C"].join(' ');
-              }
-            }
-            else if (key == "sunset" || key == "sunrise" || key == "dt") {
-              var p = document.querySelector(".weather");
-              p.innerHTML = `${timeConvert(value)}`;
-              if (key == "sunrise") {
-                document.querySelector(".sunrise").children[2].innerText = `${timeConvert(value)}`;
-              }
-              else if (key == "sunset") {
-                document.querySelector(".sunset").children[2].innerText = `${timeConvert(value)}`;
-              }
-              else if (key == "dt") {
-                document.querySelector(".date").innerHTML = `${timeConvert(value)}`;
-              }
-            }
-            else if (key == "feels_like") {
-              document.querySelector(".temperature").children[2].innerHTML = `${value}` + "°";
-            }
-            else if (key == "visibility") {
-              document.querySelector(".visibility").children[2].innerHTML = `${value}`;
-            }
-            else if (key == "humidity") {
-              document.querySelector(".humidity").children[2].innerHTML = `${value}%`;
-            }
-            else if (key == "wind_speed") {
-              document.querySelector(".wind").children[2].innerHTML = `${key}: ${value}`;
-            }
-            else if (key == "wind_deg") {
-              document.querySelector(".wind").children[3].innerHTML = `${key}: ${value}`;
-            }
-            else if (key == "wind_gust") {
-              document.querySelector(".wind").children[4].innerHTML = `${key}: ${value}`;              
-            }
-          }
-
-        });
-      })();
-
-      (async () => {
-        const res = await fetch(locationLink.href, {
-          headers: { Accept: 'application/json' },
-        });
-        const json = await res.json();
-        console.log(json['name']);
-        document.querySelector('.location').innerHTML = `${json['name']}`;
-      })();
-    }
-    function error() {
-      weatherStatus.textContent = 'Unable to retrieve your weather';
-    }
-
-    if (!navigator.geolocation) {
-      weatherStatus.textContent = 'Geolocation is not supported by your browser';
-    } else {
-      weatherStatus.textContent = 'Locating…';
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-
-  }
-
-  if (document.readyState === 'loading') {  // Loading hasn't finished yet
-    document.addEventListener('DOMContentLoaded', geoWeatherMe);
-    geoWeatherMe.unit = "imperial";
-  } else {  // `DOMContentLoaded` has already fired
-    geoWeatherMe();
-  }
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const weather_button = document.querySelector('.weather');
-    weather_button.addEventListener('click', function () {
-      // alert("Click");
-      if (geoWeatherMe.unit == "imperial") {
-        geoWeatherMe.unit = "metric";
-        geoWeatherMe();
-      }
-      else {
-        geoWeatherMe.unit = "imperial";
-        geoWeatherMe();
-      }
-    });
-  });
-
-</script>
-<script>
-  function updateClock() {
-    var now = new Date(),
-      months = ['January', 'February', '...'];
-    var hours = now.getHours();
-    var mins = now.getMinutes();
-    var secs = now.getSeconds();
-    if (mins < 10) { mins = "0" + mins; }
-    if (secs < 10) { secs = "0" + secs; }
-    if (hours > 12) {
-      hours = hours - 12;
-      time = hours + ':' + mins + ':' + secs;
-      time = [time, "PM"].join(' ');
-    } else {
-      time = hours + ':' + mins + ':' + secs;
-      time = [time, "AM"].join(' ');
-    }
-    date = now.toString().substr(0, 16);
-
-    document.getElementById('time').innerHTML = [date, time].join('');
-    document.getElementById('time').style.color = "white";
-    document.getElementById('time').style.color = "white";
-    document.getElementById('time').style.fontSize = "20px";
-    document.getElementById('time').style.textShadow = "2px 2px rgba(50, 50, 70, 0.5)";
-
-    setTimeout(updateClock, 1000);
-  }
-  updateClock(); // initial call
-</script>
+  <!--Scripts for Geolocation, OpenWeatherAPI, Time Conversion, Unit Conversion, Event Listeners-->
+  <script type="text/javascript" src="{% static 'js/geofindme.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/timeconvert.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/geoweatherme.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/FtoC.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/updateclock.js' %}"></script>
+  <!--Scripts for Geolocation, OpenWeatherAPI, Time Conversion, Unit Conversion, Event Listeners-->
 
 </html>
