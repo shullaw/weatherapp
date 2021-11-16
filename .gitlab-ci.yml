@@ -4,6 +4,7 @@ test:
     before_script:
         - pip install -r requirements.txt
         - pip install django_compressor
+        - pip install compressor_toolkit
         - apt update
         - apt install npm -y
         - npm install -g jest
