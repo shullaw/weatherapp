@@ -39,10 +39,13 @@ urlpatterns = [
     path('accounts/', 
     include('django.contrib.auth.urls')),
     ##-----WEATHER APP-----##
-    path('',
-         weatherapp_view,
-         name="weatherapp"),
+    # path('',
+    #      weatherapp_view,
+    #      name="weatherapp"), # previous path
     # path('weatherapp/', include('weatherapp.urls')),
+    path('',
+        TemplateView.as_view(template_name="weatherapp.html"),
+        name="weatherapp"),
     path('ajax',
          TemplateView.as_view(template_name="ajax.html"),
          name="ajax"),
