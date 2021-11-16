@@ -3,6 +3,7 @@ test:
     stage: test
     before_script:
         - pip install -r requirements.txt
+        - npm install -g jest
     script:
         - python manage.py migrate
         - python manage.py test
@@ -13,5 +14,7 @@ staging:
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl
+        - npm install
     script:
         - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --run='python manage.py migrate'
+        - python manage.py compress
