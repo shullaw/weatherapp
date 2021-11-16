@@ -2,6 +2,7 @@ import os
 os.system('pip install pipreqs')  # install pipreqs
 os.system('pipreqs ./ --force') # generate requirements.txt for deployment
 os.system('pip install -r requirements.txt') # install requirements.txt
+os.system('pip install boostrap4')  # missing for some reason
 from django.test import TestCase
 from splinter import Browser
 from selenium import webdriver
