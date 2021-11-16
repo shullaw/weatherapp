@@ -3,6 +3,7 @@ test:
     stage: test
     before_script:
         - pip install -r requirements.txt
+        - apt-get install npm
         - npm install -g jest
     script:
         - python manage.py migrate
