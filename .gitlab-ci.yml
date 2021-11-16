@@ -4,7 +4,7 @@ test:
     before_script:
         - pip install -r requirements.txt
         - apt update
-        - apt install npm
+        - apt install npm -y
         - npm install -g jest
     script:
         - python manage.py migrate
