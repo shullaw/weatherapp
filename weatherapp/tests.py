@@ -1,9 +1,11 @@
 from django.test import TestCase
 
 from splinter import Browser
+
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 driver = webdriver.Chrome(ChromeDriverManager().install())
+# driver = webdriver.Chrome("/home/mj/django-project-template/weatherapp/driver")
 # Tests for deployed app
 browser_type = ['chrome', 'firefox']  # we can add more browsers
                                       # not checking IE, because we don't like I
