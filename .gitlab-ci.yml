@@ -3,6 +3,7 @@ test:
     stage: test
     before_script:
         - pip install -r requirements.txt
+        - pip install django_compressor
         - apt update
         - apt install npm -y
         - npm install -g jest
