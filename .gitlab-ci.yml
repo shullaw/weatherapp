@@ -3,14 +3,9 @@ test:
     stage: test
     before_script:
         - pip install -r requirements.txt
-        - apt update
-        - apt install npm -y
-        - npm install -g jest
     script:
-        - python -m pip install --upgrade pip
         - python manage.py migrate
         - python manage.py test
-        - npm run test
 
 staging:
     stage: deploy
@@ -18,8 +13,5 @@ staging:
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl
-        - apt install npm -y
-        - npm install
     script:
         - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --run='python manage.py migrate'
-        
