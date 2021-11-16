@@ -1,8 +1,8 @@
-import os
-os.system('pip install pipreqs')  # install pipreqs
-os.system('pipreqs ./ --force') # generate requirements.txt for deployment
-os.system('pip install -r requirements.txt') # install requirements.txt
-os.system('python -m pip install bootstrap4')  # missing for some reason
+# import os
+# os.system('pip install pipreqs')  # install pipreqs
+# os.system('pipreqs ./ --force') # generate requirements.txt for deployment
+# os.system('pip install -r requirements.txt') # install requirements.txt
+# os.system('python -m pip install django-bootstrap4==2.3.1')  # missing for some reason
 from django.test import TestCase
 from splinter import Browser
 from selenium import webdriver
