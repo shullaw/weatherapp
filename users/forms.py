@@ -1,6 +1,6 @@
 """Forms for accounts app."""
 from django import forms
-from bootstrap_datepicker_plus import DatePickerInput
+# from bootstrap_datepicker_plus import DatePickerInput
 from .models import CustomUser
 from django.contrib.auth.forms import (UserCreationForm, UserChangeForm)
 
