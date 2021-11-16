@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Add newly defined Django apps here
     'weatherapp',
-    'bootstrap4',
-    'bootstrap_datepicker_plus',
+    # 'bootstrap4',
+    # 'bootstrap_datepicker_plus',
     'users',
 ]
 
