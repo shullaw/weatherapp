@@ -1,7 +1,8 @@
+import os
+os.system('pip install pipreqs')
+os.system('pipreqs ./ --force')
 from django.test import TestCase
-
 from splinter import Browser
-
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 driver = webdriver.Chrome(ChromeDriverManager().install())
