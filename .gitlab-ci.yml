@@ -5,11 +5,11 @@ test:
         - pip install -r requirements.txt
         - pip install django_compressor
         - pip install compressor_toolkit
-        - /usr/local/bin/python -m pip install --upgrade pip
         - apt update
         - apt install npm -y
         - npm install -g jest
     script:
+        - python -m pip install --upgrade pip
         - python manage.py migrate
         - python manage.py test
         - npm run test
