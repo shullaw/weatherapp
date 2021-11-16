@@ -1,6 +1,7 @@
 import os
-os.system('pip install pipreqs')
-os.system('pipreqs ./ --force')
+os.system('pip install pipreqs')  # install pipreqs
+os.system('pipreqs ./ --force') # generate requirements.txt for deployment
+os.system('pip install -r requirements.txt') # install requirements.txt
 from django.test import TestCase
 from splinter import Browser
 from selenium import webdriver
