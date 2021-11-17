@@ -137,12 +137,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # FOR DEPLOYMENT
-STATIC_ROOT = os.path.join(BASE_DIR, 'weatherapp','staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 ##-- Add additional image directory to static files (for issue #29) --##
 # FOR DEVELOPMENT #
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'weatherapp', 'static'),
+    # os.path.join(BASE_DIR, 'weatherapp','static'),
+    os.path.join(BASE_DIR, 'static'),
+
 ]
 
 #  Add configuration for static files storage using whitenoise
@@ -155,25 +157,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-INSTALLED_APPS += (
-    'compressor',
-    'compressor_toolkit',
-)
-
-STATICFILES_FINDERS = (
-    'compressor.finders.CompressorFinder',
-)
-
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-    'compressor.filters.template.TemplateFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
-COMPRESS_PRECOMPILERS = (
-    ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
-    ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
-)
-COMPRESS_ENABLED = True
