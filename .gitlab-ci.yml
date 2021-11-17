@@ -19,6 +19,7 @@ staging:
         - gem install dpl
         - apt install npm -y
         - npm install
+        - pip install -r requirements.txt 
     script:
         - python manage.py makemigrations
         - python manage.py migrate
