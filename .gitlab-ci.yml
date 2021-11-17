@@ -6,7 +6,6 @@ test:
         - apt update -y
         - apt install npm -y
         - npm install -g jest
-        - jest --init
     script:
         - python -m pip install --upgrade pip
         - python manage.py migrate
