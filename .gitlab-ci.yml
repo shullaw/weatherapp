@@ -21,4 +21,4 @@ staging:
         - npm install
         - pip install -r requirements.txt 
     script:
-        - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --run='python manage.py migrate && python manage.py collectstatic --noinput'
+        - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --run='python manage.py migrate'
