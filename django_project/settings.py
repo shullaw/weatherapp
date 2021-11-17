@@ -137,12 +137,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # FOR DEPLOYMENT
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, './staticfiles')
 
 ##-- Add additional image directory to static files (for issue #29) --##
 # FOR DEVELOPMENT #
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, './static'),
 ]
 
 #  Add configuration for static files storage using whitenoise
