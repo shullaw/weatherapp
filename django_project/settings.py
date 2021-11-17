@@ -160,7 +160,7 @@ INSTALLED_APPS += (
     'compressor_toolkit',
 )
 
-STATICFILES_FINDERS += (
+STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
