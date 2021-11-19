@@ -43,7 +43,7 @@
 <body>
   <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
 
-  <h2 class="title">Weatherman</h2>
+  <!-- <h2 class="title">Weatherman</h2> -->
   <div class="search-box" align="center">
     <input type="text" id="txtbox" class="search-bar" placeholder="Search...">
   </div>
@@ -65,7 +65,7 @@
   </div>
   <div class="weather-aspect" style="width:fit-content; margin:0 auto; height:auto; justify-content: center;">
     <div class="sunrise">
-      <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:50%" class="sunup">
+      <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:50%;" class="sunup">
       <p>Sunrise</p>
       <p>data here</p>
     </div>
@@ -113,84 +113,115 @@
   <script type="text/javascript" src="{% static 'js/updateclock.js' %}"></script>
   <!--Scripts for Geolocation, OpenWeatherAPI, Time Conversion, Unit Conversion, Event Listeners-->
 
-  <div class="week-data">
+  <!-- <div class="week-data">
     Weekly forecast
     <div>Weekly forecast</div>
     <div>Weekly forecast</div>
     <div>Weekly forecast</div>
     <div>Weekly forecast</div>
-  </div>
+  </div> -->
 
   <style>
-.card {
-  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
-  transition: 0.3s;
-  border-radius: 10px;
-  width: 100%;
-  background-color: transparent;
-  margin: 0 auto;
-  display: block;
-}
-.card-title {
-  color: white;
-  text-align: center;
-}
+    .card {
+      box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+      transition: 0.3s;
+      border-radius: 10px;
+      background-color: transparent;
+      display: block;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      width: 100%;
+    }
 
+
+    .card-title {
+      color: white;
+      text-align: center;
+    }
   </style>
-  
+
   <div class="row">
     <div class="card-columns mx-auto d-flex justify-content-center col-12">
-    <div class="col-sm">
-      <div class="card">
+      <div class="col-sm text-center">
+        <div class="card">
           <h5 class="card-title">Sunday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'sunny.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
+      </div>
+      <div class="col text-center">
+        <div class="card">
           <h5 class="card-title">Monday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'cloudy.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
+      </div>
+      <div class="col-sm text-center">
+        <div class="card">
           <h5 class="card-title">Tuesday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'snow.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
+      </div>
+      <div class="col-sm text-center">
+        <div class="card">
           <h5 class="card-title">Wednesday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'stormy.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
+      </div>
+      <div class="col-sm text-center">
+        <div class="card">
           <h5 class="card-title">Thursday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'windy.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
+      </div>
+      <div class="col-sm text-center">
+        <div class="card">
           <h5 class="card-title">Friday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'sunny.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
-    </div>
-    <div class="col-sm">
-      <div class="card">
+      </div>
+      <div class="col-sm text-center">
+        <div class="card">
           <h5 class="card-title">Saturday</h5>
-          <p class="card-text">content</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2.5);">
+              {% include 'stormy.html' %}
+            </div>
+            <p class="card-text">content</p>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-</div>
 
 
 </html>

@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'bootstrap_datepicker_plus',
     'users',
-    'compressor',
+    # 'compressor',
 ]
 
 MIDDLEWARE = [
