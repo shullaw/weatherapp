@@ -1,13 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
-<!--THIS IS THE FILE BEING USED FOR HOMEPAGE, NOT IN weatherapp/templates-->
+<!--THIS IS THE FILE BEING USED FOR HOMEPAGE in weatherapp/templates-->
 <html lang=“en”>
 
 <head>
   <meta charset=“UTF-8”>
   <title>WeatherApp</title>
   <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
   <!----------------- MDN Boostrap CDN------------------>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -111,7 +113,7 @@
   <script type="text/javascript" src="{% static 'js/updateclock.js' %}"></script>
   <!--Scripts for Geolocation, OpenWeatherAPI, Time Conversion, Unit Conversion, Event Listeners-->
 
- <div class="week-data">
+  <div class="week-data">
     Weekly forecast
     <div>Weekly forecast</div>
     <div>Weekly forecast</div>
@@ -119,71 +121,76 @@
     <div>Weekly forecast</div>
   </div>
 
-  <!--box-slider-->
- 
-  <div class="container">
+  <style>
+.card {
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+  transition: 0.3s;
+  border-radius: 10px;
+  width: 100%;
+  background-color: transparent;
+  margin: 0 auto;
+  display: block;
+}
+.card-title {
+  color: white;
+  text-align: center;
+}
+
+  </style>
+  
+  <div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Monday </h5>
-        <!-- all temperature in degree celsius --> 
-        <!-- need to be applied for all days-->    
-        <!-- we need to add logic here in javascript if temp is equal or greater than 20 degree we show sunny image -->  
-        <img src="{% static 'img/weekcloud.png' %}" alt="cloud" class="cloud">
-        <!-- data here-->
-        <p>19'C</p>
-        
-        <!--
-          we need to add logic here in javascript if wind speed is equal or greater than 25 mph we show windy image 
-          <img src="{% static 'img/weekwindy.png' %}" alt="wind" class="wind">
-
-          we need to add logic here in javascript if temp is equal or less than 0 degree we show snowy image
-          <img src="{% static 'img/weeksnowy.png' %}" alt="snow" class="snow">
-
-          we need to add logic here in javascript if temp is less than  12 degree celsius and greater than 0 degree we show cold image
-          <img src="{% static 'img/cold.png' %}" alt="cold" class="cold">
-
-          we need to add logic here in javascript use weatherapi for rainy data
-          <img src="{% static 'img/weekrainy.png' %}" alt="rain" class="rain">
-
-          we need to add logic here in javascript if temp is equal or greater than 20 degree we show sunny image
-          <img src="{% static 'img/weeksunny.png' %}" alt="sun" class="sun">
-        -->  
-      </div>
-
+          <h5 class="card-title">Sunday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Tuesday </h5>
-        <img src="{% static 'img/weekcloud.png' %}" alt="cloud" class="cloud">
-        <p>19'C</p>
-      </div>
-
+          <h5 class="card-title">Monday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Wednesday </h5>
-        <img src="{% static 'img/weeksnowy.png' %}" alt="snow" class="snow">
-        <p>19'C</p>
-      </div>
-
+          <h5 class="card-title">Tuesday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Thursday </h5>
-        <img src="{% static 'img/weeksunny.png' %}" alt="sun" class="sun">
-        <p>19'C</p>
-      </div>
-
+          <h5 class="card-title">Wednesday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Friday </h5>
-        <img src="{% static 'img/weekrainy.png' %}" alt="rain" class="rain">
-        <p>19'C</p>
-      </div>
-
+          <h5 class="card-title">Thursday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Saturday </h5>
-        <img src="{% static 'img/cold.png' %}" alt="cold" class="cold">
-        <p>19'C</p>
-      </div>
-
+          <h5 class="card-title">Friday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-sm">
       <div class="card">
-        <h5 style="text-align:center"> Sunday </h5>
-        <img src="{% static 'img/weeksunny.png' %}" alt="sun" class="sun">
-        <p>19'C</p>
-      </div>
-
+          <h5 class="card-title">Saturday</h5>
+          <p class="card-text">content</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
   </div>
+</div>
+
+
 </html>
