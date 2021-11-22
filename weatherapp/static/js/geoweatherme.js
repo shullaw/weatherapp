@@ -1,4 +1,4 @@
-// /weatherapp/static/js/geoweatherme.js //
+// /weatherapp/static/js/geoweatherme.js // THIS ONE IS THE ONE THAT IS BEING CHANGED //
 function geoWeatherMe() {
     const weatherStatus = document.querySelector('#weather-status');
     const weatherLink = document.querySelector('#weather-link');
@@ -29,15 +29,32 @@ function geoWeatherMe() {
         const json = await res.json();
         console.log(json['name']);
         document.querySelector('.location').innerHTML = `${json['name']}`;
-        // let deg = "°";
-        // let min_deg = `${json['main'].temp_min}${deg}`;
-        // document.getElementById("before").innerHTML = min_deg;
-        // document.querySelector('.weather-box').innerHTML = min_deg + document.querySelector('.weather-box').innerHTML;
-        // let high_deg = `${json['main'].temp_max}${deg}`;
-        // document.querySelector('.weather-box').innerHTML = document.querySelector('.weather-box').innerHTML+ high_deg;
-        // document.querySelector('.weather-box').setAttributeNode(document.createAttribute('style'));
-        // document.querySelector('.weather-box').setAttribute('style', 'color: white;');
-        // document.getElementById("after").innerHTML = high_deg;
+      })();
+      (async () => {
+        const res = await fetch(weatherLink.href, {
+          headers: { Accept: 'application/json' },
+        });
+        const json = await res.json();
+        for (var i = 0; i < json["daily"].length-1; i++) {
+        Object.entries(json["daily"][i]["temp"]).forEach(([key, value]) => {
+          var is = i.toString();
+          var deg = "°";
+          if (key == "day") {
+          console.log(`day: ${key}:${value}`);
+          document.querySelector(`.card-day`+is).innerHTML = `${value}` + deg;
+          }
+          // else if (key == "min") {
+          // console.log(`day: ${key}:${value}`);
+          // document.querySelector('.card-min'+is).innerHTML = `${value}`;
+          // }
+          // else if (key == "max") {
+          // console.log(`day: ${key}:${value}`);
+          // document.querySelector('.card-max'+is).innerHTML = `${value}`;
+          // }
+          // console.log(`${key}:${value}`["temp"]["day"]);
+          // console.log(`${key}:${value}`["temp"]["night"]);
+        });}
+
       })();
       (async () => {
         const res = await fetch(weatherLink.href, {
@@ -97,87 +114,22 @@ function geoWeatherMe() {
 
         });
       })();
-
-      // (async () => {
-      //   const res = await fetch(locationLink.href, {
-      //     headers: { Accept: 'application/json' },
-      //   });
-      //   const json = await res.json();
-      //   console.log(json['name']);
-      //   document.querySelector('.location').innerHTML = `${json['name']}`;
-      //   let deg = "°";
-      //   let min_deg = `${json['main'].temp_min}${deg}`;
-      //   document.querySelector('.weather-box').innerHTML = min_deg + document.querySelector('.weather-box').innerHTML;
-      //   let high_deg = `${json['main'].temp_max}${deg}`;
-      //   document.querySelector('.weather-box').innerHTML = document.querySelector('.weather-box').innerHTML+ high_deg;
-      //   document.querySelector('.weather-box').setAttributeNode(document.createAttribute('style'));
-      //   document.querySelector('.weather-box').setAttribute('style', 'color: white;');
-      // })();
     }
     function error() {
       weatherStatus.textContent = 'Unable to retrieve your weather';
     }
-    (async () => {
-      const res = await fetch(weatherLink.href, {
-        headers: { Accept: 'application/json' },
-      });
-      const json = await res.json();
-      Object.entries(json["daily"]).forEach(([key, value]) => {
-        if (key != "weather") {
-        //   var button = document.querySelector('.weather').children[1];
-        //   if (button) {
-        //     document.querySelector('.weather').replaceWith(document.querySelector('.weather'))
-        //   }
-        console.log(`${key}:${value}`);
-        var card = document.querySelector(".card");
-          if (key == "temp") {
-            let deg = "°";
-            let temp_deg = `${value}${deg}`;
-            card.innerHTML = temp_deg;
-            if (geoWeatherMe.unit == "imperial") {
-              card.innerHTML = [temp_deg, "F"].join(' ');
-            }
-            else {
-              card.innerHTML = [temp_deg, "C"].join(' ');
-            }
-          }
-          else if (key == "dt") {
-            var p = document.querySelector(".card-title");
-            p.innerHTML = `${timeConvert(value)}`;
-            if (key == "sunrise") {
-              document.querySelector(".sunrise").children[2].innerText = `${timeConvert(value)}`;
-            }
-            else if (key == "sunset") {
-              document.querySelector(".sunset").children[2].innerText = `${timeConvert(value)}`;
-            }
-            else if (key == "dt") {
-              document.querySelector(".date").innerHTML = `${timeConvert(value)}`;
-            }
-          }
-          else if (key == "feels_like") {
-            document.querySelector(".temperature").children[2].innerHTML = `${value}` + "°";
-          }
-          else if (key == "visibility") {
-            document.querySelector(".visibility").children[2].innerHTML = `${value}`;
-          }
-          else if (key == "humidity") {
-            document.querySelector(".humidity").children[2].innerHTML = `${value}%`;
-          }
-          else if (key == "wind_speed") {
-              if (geoWeatherMe.unit == "imperial") {
-                let wind_unit = "mph";
-                document.querySelector(".wind").children[2].innerHTML = `${value} ${wind_unit}`;
-              }
-              else {
-                let wind_unit = "kph";
-                document.querySelector(".wind").children[2].innerHTML = `${value} ${wind_unit}`;
-              }
-              
-            }  
-        }
+    // (async () => {
+    //   const res = await fetch(weatherLink.href, {
+    //     headers: { Accept: 'application/json' },
+    //   });
+    //   const json = await res.json();
+    //   Object.entries(json["daily"]).forEach(([key, value]) => {
+    //     if (key != "weather") {
+    //     console.log(`${key}:${value}`);
+    //     }
 
-      });
-    })();
+    //   });
+    // })();
 
     if (!navigator.geolocation) {
       weatherStatus.textContent = 'Geolocation is not supported by your browser';

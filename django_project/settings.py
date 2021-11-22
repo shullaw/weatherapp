@@ -138,7 +138,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # FOR DEPLOYMENT
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 ##-- Add additional image directory to static files (for issue #29) --##
 # FOR DEVELOPMENT #

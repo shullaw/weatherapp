@@ -5,3 +5,4 @@ from django.shortcuts import render
 def weatherapp(request):
     return render(request, 'weatherapp.html')
 ##----weather app view/template----##
+
