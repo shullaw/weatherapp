@@ -32,11 +32,13 @@
   <!----------------- MDN Boostrap CDN------------------>
   <style>
     body {
+      background: rgb(202, 3, 178);
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.3984944319524685) 0%, rgba(80, 9, 121, 1) 35%, rgba(202, 3, 178, .75) 100%);
       background-image: url('{% static 'img/background_img.jpg' %}');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background-repeat: :backdrop;
+      /* background-attachment: fixed; */
       background-size: -webkit-full-screen;
-      width: 100%;
+      width: clientWidth;
     }
   </style>
 </head>
@@ -123,16 +125,18 @@
 <style>
   .card {
     box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
-    transition: 0.3s;
+    transition: 0s;
     border-radius: 10px;
     background-color: transparent;
     display: block;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    width: 100%;
+    min-width: 150px;
   }
-
+  .daily {
+    min-width: 100vw;
+    overflow:visible;
+}
 
   .card-title {
     color: white;
@@ -147,151 +151,122 @@
     font-weight: bold;
     font-family: "Lato", sans-serif;
   }
-  .daily{
-        display: flex;
-        flex-wrap: wrap; 
-        grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
-        justify-content: center; margin:0 auto; position:relative;
-
-    }
-    .daily>*{
-        flex:1 1 160px;
-    }
-  
 </style>
 
 <div class="daily">
   <div class="row">
-    <div class="card-columns mx-auto d-flex justify-content-center col-12">
-      <div class="col-sm text-center">
-        <div class="card">
-          <h5 class="card-title">Sunday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'sunny.html' %}
-            </div>
-
-            <!-- <div class="card-text text-white"> -->
-            <p class="card-day card-day0 text-white"
-              style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute"></p>
-            <!-- <p class="card-min0 card-footer"style="position: relative;"></p>
-              <p class="card-max0 card-footer" style="position: relative;"></p> -->
-
-            <!-- </div> -->
+    <div class="col-sm text-center">
+      <div class="card">
+        <h5 class="card-title card-title0">Sunday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'sunny.html' %}
           </div>
-        </div>
-      </div>
-      <div class="col text-center">
-        <div class="card">
-          <h5 class="card-title">Monday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'cloudy.html' %}
-            </div>
-            <p class="card-text text-white">
-            <p class="card-day card-day1 text-white"
-              style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
-            <!-- <p class="card-min1">content</p>
-            <p class="card-max1">content</p> -->
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm text-center">
-        <div class="card">
-          <h5 class="card-title">Tuesday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'snow.html' %}
-            </div>
-            <p class="card-text text-white">
-            <p class="card-day card-day2 text-white"
-              style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
-            <!-- <p class="card-min2">content</p>
-              <p class="card-max2">content</p> -->
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm text-center">
-        <div class="card">
-          <h5 class="card-title">Wednesday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'stormy.html' %}
-            </div>
-            <p class="card-text text-white">
-            <p class="card-day card-day3 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-              position:absolute">content</p>
-            <!-- <p class="card-min3">content</p>
-              <p class="card-max3">content</p> -->
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm text-center">
-        <div class="card">
-          <h5 class="card-title">Thursday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'windy.html' %}
-            </div>
-            <p class="card-text text-white">
-            <p class="card-day card-day4 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-              position:absolute">content</p>
-            <!-- <p class="card-min4">content</p>
-              <p class="card-max4">content</p> -->
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm text-center">
-        <div class="card">
-          <h5 class="card-title">Friday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'sunny.html' %}
-            </div>
-            <p class="card-text text-white">
-            <p class="card-day card-day5 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-              position:absolute">content</p>
-            <!-- <p class="card-min5">content</p>
-              <p class="card-max5">content</p> -->
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm text-center">
-        <div class="card">
-          <h5 class="card-title">Saturday</h5>
-          <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(2.5);">
-              {% include 'stormy.html' %}
-            </div>
-            <p class="card-text text-white">
-            <p class="card-day card-day6 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-              position:absolute">content</p>
-            <!-- <p class="card-min6">content</p>
-              <p class="card-max6">content</p> -->
-            </p>
-          </div>
+          <p class="card-day card-day0 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+            position:absolute">content</p>
+          </p>
         </div>
       </div>
     </div>
+    <div class="col text-center">
+      <div class="card">
+        <h5 class="card-title card-title1">Monday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'cloudy.html' %}
+          </div>
+          <p class="card-text text-white">
+          <p class="card-day card-day1 text-white"
+            style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm text-center">
+      <div class="card">
+        <h5 class="card-title card-title2">Tuesday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'snow.html' %}
+          </div>
+          <p class="card-text text-white">
+          <p class="card-day card-day2 text-white"
+            style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm text-center">
+      <div class="card">
+        <h5 class="card-title card-title3">Wednesday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'stormy.html' %}
+          </div>
+          <p class="card-text text-white">
+          <p class="card-day card-day3 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+            position:absolute">content</p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm text-center">
+      <div class="card">
+        <h5 class="card-title card-title4">Thursday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'windy.html' %}
+          </div>
+          <p class="card-text text-white">
+          <p class="card-day card-day4 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+            position:absolute">content</p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm text-center">
+      <div class="card">
+        <h5 class="card-title card-title5">Friday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'sunny.html' %}
+          </div>
+          <p class="card-text text-white">
+          <p class="card-day card-day5 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+            position:absolute">content</p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm text-center">
+      <div class="card">
+        <h5 class="card-title card-title6">Saturday</h5>
+        <div class="card-body">
+          <div class="text-white text-center d-flex align-items-center justify-content-center"
+          style="transform: scale(1.5);">
+            {% include 'stormy.html' %}
+          </div>
+          <p class="card-text text-white">
+          <p class="card-day card-day6 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px;
+            right:25px; position:absolute">content</p>
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <body>
 
 </html>
-<!-- <script>
+<script>
 
   // console.log(
   //   "Actual inner width: " + actualInnerWidth + "px"
@@ -299,15 +274,15 @@
   // $(function() {
   //     document.body.style.width = actualInnerWidth + "px";
   // });
-    
-    function reportWindowSize() {
-      var actualInnerWidth = document.body.clientWidth * .98;     // El. width minus scrollbar width
-      var actualInnerHeight = document.body.clientHeight * .98;     // El. width minus scrollbar width
-      document.body.style.width = actualInnerWidth + "px";
-      document.body.style.height = actualInnerHeight + "px";
-    }
-    
-    window.onresize = reportWindowSize;
-    window.addEventListener('resize', reportWindowSize);
-    reportWindowSize();
-    </script> -->
+
+  function reportWindowSize() {
+    var actualInnerWidth = window.innerWidth;     // El. width minus scrollbar width
+    var actualInnerHeight = window.innerHeight;     // El. width minus scrollbar width
+    document.body.style.width = actualInnerWidth + "px";
+    document.body.style.height = actualInnerHeight + "px";
+  }
+
+  window.onresize = reportWindowSize;
+  // window.addEventListener('resize', reportWindowSize);
+  reportWindowSize();
+</script>

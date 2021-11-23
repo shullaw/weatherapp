@@ -590,3 +590,6 @@ $RECYCLE.BIN/
 
 #node
 node_modules/*
+
+#temp files (typically static)
+*.gz
