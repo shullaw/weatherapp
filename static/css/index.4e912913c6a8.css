@@ -377,7 +377,7 @@ nav li a.active {
   color: #4444ff;
 }
 
-.card {
+#card {
   box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   width: 300px;
@@ -388,7 +388,7 @@ nav li a.active {
   border-radius: 5px;
   position: relative;
 }
-.card .details {
+#card .details {
   position: absolute;
   top: 0;
   left: 0;
@@ -400,24 +400,24 @@ nav li a.active {
   justify-content: space-between;
   transition: color 2s ease;
 }
-.thunder .card .details {
+.thunder #card .details {
   color: #ddd;
 }
-.card .details .right {
+#card .details .right {
   text-align: right;
 }
-.card .details #date {
+#card .details #date {
   margin: 4px 0;
 }
-.card .details #summary {
+#card .details #summary {
   font-weight: 600;
   font-size: 22px;
 }
-.card .details .temp {
+#card .details .temp {
   font-size: 60px;
   line-height: 60px;
 }
-.card .details .temp span {
+#card .details .temp span {
   font-size: 18px;
   line-height: 30px;
   vertical-align: top;
@@ -521,14 +521,14 @@ img {vertical-align: middle;}
 }
 
 /* Fading animation */
-/* .fade {
-  -webkit-animation-name: fade
-  -webkit-animation-duration: 1.5s ease-in-out;
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
   animation-name: fade;
-  animation-duration: 1.5s ease-in-out;
-} */
+  animation-duration: 1.5s;
+}
 
-/* @-webkit-keyframes fade {
+@-webkit-keyframes fade {
   from {opacity: .4} 
   to {opacity: 1}
 }
@@ -536,7 +536,7 @@ img {vertical-align: middle;}
 @keyframes fade {
   from {opacity: .4} 
   to {opacity: 1}
-} */
+}
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
