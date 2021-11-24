@@ -45,9 +45,9 @@
 <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
 
 <!-- <h2 class="title">Weatherman</h2> -->
-<div class="search-box" align="center">
+<!-- <div class="search-box" align="center">
   <input type="text" id="txtbox" class="search-bar" placeholder="Search...">
-</div>
+</div> -->
 </div>
 <div class="location-box" align="center">
   <div class="location"></div>
@@ -114,166 +114,55 @@
 <script type="text/javascript" src="{% static 'js/updateclock.js' %}"></script>
 <!--Scripts for Geolocation, OpenWeatherAPI, Time Conversion, Unit Conversion, Event Listeners-->
 
-<!-- <div class="week-data">
-    Weekly forecast
-    <div>Weekly forecast</div>
-    <div>Weekly forecast</div>
-    <div>Weekly forecast</div>
-    <div>Weekly forecast</div>
-  </div> -->
 
-<style>
-  .card {
-    box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
-    transition: 0s;
-    border-radius: 10px;
-    background-color: transparent;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    min-width: 150px;
-  }
-  .daily {
-    min-width: 100vw;
-    overflow:visible;
-}
+<div class="weeklydata1" id="yes">{% include 'cardsNoTransition.html' %}</div>
 
-  .card-title {
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    font-family: "Lato", sans-serif;
+<div class="weeklydata2" id="no" hidden>{% include 'cardsWithTransition.html' %}</div>
 
+<script>
+  var slideIndex = 0;
+  showSlides();
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+      $(".mySlides").fadeOut(4000);
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+    $(".mySlides").fadeOut(4000);
+    setTimeout(showSlides, 3000); // Change image every 2 seconds
   }
 
-  .card-day {
-    color: white;
-    font-weight: bold;
-    font-family: "Lato", sans-serif;
-  }
-</style>
-
-<div class="daily">
-  <div class="row">
-    <div class="col-sm text-center">
-      <div class="card">
-        <h5 class="card-title card-title0">Sunday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'sunny.html' %}
-          </div>
-          <p class="card-day card-day0 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-            position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col text-center">
-      <div class="card">
-        <h5 class="card-title card-title1">Monday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'cloudy.html' %}
-          </div>
-          <p class="card-text text-white">
-          <p class="card-day card-day1 text-white"
-            style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm text-center">
-      <div class="card">
-        <h5 class="card-title card-title2">Tuesday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'snow.html' %}
-          </div>
-          <p class="card-text text-white">
-          <p class="card-day card-day2 text-white"
-            style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm text-center">
-      <div class="card">
-        <h5 class="card-title card-title3">Wednesday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'stormy.html' %}
-          </div>
-          <p class="card-text text-white">
-          <p class="card-day card-day3 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-            position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm text-center">
-      <div class="card">
-        <h5 class="card-title card-title4">Thursday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'windy.html' %}
-          </div>
-          <p class="card-text text-white">
-          <p class="card-day card-day4 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-            position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm text-center">
-      <div class="card">
-        <h5 class="card-title card-title5">Friday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'sunny.html' %}
-          </div>
-          <p class="card-text text-white">
-          <p class="card-day card-day5 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
-            position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm text-center">
-      <div class="card">
-        <h5 class="card-title card-title6">Saturday</h5>
-        <div class="card-body">
-          <div class="text-white text-center d-flex align-items-center justify-content-center"
-          style="transform: scale(1.5);">
-            {% include 'stormy.html' %}
-          </div>
-          <p class="card-text text-white">
-          <p class="card-day card-day6 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px;
-            right:25px; position:absolute">content</p>
-          </p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+</script>
 
 <body>
 
 </html>
 <script>
+  var no = document.getElementById('no');
+  var yes = document.getElementById('yes');
+  document.getElementById('yes').addEventListener('click', function () {
+    // alert("yes!");
+    no.hidden = !no.hidden;
+    yes.hidden = !yes.hidden;
+  });
+  document.getElementById('no').addEventListener('click', function () {
+    // alert("no!");
+    no.hidden = !no.hidden;
+    yes.hidden = !yes.hidden;
+  });
+</script>
+<script>
 
-  // console.log(
-  //   "Actual inner width: " + actualInnerWidth + "px"
-  // );
-  // $(function() {
-  //     document.body.style.width = actualInnerWidth + "px";
-  // });
+
 
   function reportWindowSize() {
     var actualInnerWidth = window.innerWidth;     // El. width minus scrollbar width

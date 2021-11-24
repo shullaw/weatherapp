@@ -68,7 +68,6 @@ function geoWeatherMe() {
             var day = days[date];
             document.querySelector(`.card-day` + i).innerHTML = `${value}` + deg;
 
-
           }
 
         });

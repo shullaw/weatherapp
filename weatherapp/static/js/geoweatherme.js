@@ -1,5 +1,7 @@
 // /weatherapp/static/js/geoweatherme.js // THIS ONE IS THE ONE THAT IS BEING CHANGED //
 function geoWeatherMe() {
+  
+
   const weatherStatus = document.querySelector('#weather-status');
   const weatherLink = document.querySelector('#weather-link');
   const weatherLocation = document.querySelector('#weather-location');
@@ -55,7 +57,9 @@ function geoWeatherMe() {
           for (var j = 0; j < days.length; j++) {
             js = j.toString();
             days.forEach(function (day, index) {
-              document.querySelector(`.card-title${js}`).innerHTML = `${days[j]}`;
+              document.querySelectorAll(`.card-title${js}`)[0].innerHTML = `${days[j]}`;
+              document.querySelectorAll(`.card-title${js}`)[1].innerHTML = `${days[j]}`;
+              
             });
           }
         });
@@ -64,8 +68,8 @@ function geoWeatherMe() {
         Object.entries(json["daily"][i]["temp"]).forEach(([key, value]) => {
           if (key == "day") {
             var day = days[date];
-            document.querySelector(`.card-day` + i).innerHTML = `${value}` + deg;
-
+            document.querySelectorAll(`.card-day` + i)[0].innerHTML = `${value}` + deg;
+            document.querySelectorAll(`.card-day` + i)[1].innerHTML = `${value}` + deg;
           }
 
         });
@@ -131,7 +135,6 @@ function geoWeatherMe() {
       });
     })();
   }
-
 
   function error() {
     weatherStatus.textContent = 'Unable to retrieve your weather';

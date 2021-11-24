@@ -1,7 +1,5 @@
 // /weatherapp/static/js/geoweatherme.js // THIS ONE IS THE ONE THAT IS BEING CHANGED //
 function geoWeatherMe() {
-  
-
   const weatherStatus = document.querySelector('#weather-status');
   const weatherLink = document.querySelector('#weather-link');
   const weatherLocation = document.querySelector('#weather-location');
@@ -67,7 +65,6 @@ function geoWeatherMe() {
           if (key == "day") {
             var day = days[date];
             document.querySelector(`.card-day` + i).innerHTML = `${value}` + deg;
-
 
           }
 
@@ -135,6 +132,7 @@ function geoWeatherMe() {
     })();
   }
 
+
   function error() {
     weatherStatus.textContent = 'Unable to retrieve your weather';
   }
@@ -152,7 +150,6 @@ function geoWeatherMe() {
 if (document.readyState === 'loading') {  // Loading hasn't finished yet
   document.addEventListener('DOMContentLoaded', geoWeatherMe);
   geoWeatherMe.unit = "imperial";
-  geoWeatherMe.weekly = "cards";
 } else {  // `DOMContentLoaded` has already fired
   geoWeatherMe();
 }

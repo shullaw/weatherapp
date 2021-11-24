@@ -1,6 +1,6 @@
 // /weatherapp/static/js/geoweatherme.js // THIS ONE IS THE ONE THAT IS BEING CHANGED //
+
 function geoWeatherMe() {
-  
 
   const weatherStatus = document.querySelector('#weather-status');
   const weatherLink = document.querySelector('#weather-link');
@@ -13,18 +13,31 @@ function geoWeatherMe() {
   locationLink.textContent = '';
 
   function success(position) {
+
+    // var url, coords;
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(function (position) {
+    //     const latitude = position.coords.latitude;
+    //     const longitude = position.coords.longitude;
+    //     const geounit = `${geoWeatherMe.unit}`;
+    //     url = "api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&"+"lon="+longitude+"appid="+setting&callback=test";
+    //     $.getJSON(url, function (json) {
+    //       console.log(json);
+    //     });
+    //   });
+    // } else {
+    //   alert("Geolocation is not supported by this browser.");
+    // }
+
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
     console.log(latitude);
     console.log(longitude);
 
     weatherStatus.textContent = '';
-
-
-
-    weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=a3c53d34ecd943a9517dea09b203f8e0&units=${geoWeatherMe.unit}`;
+    weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
     weatherLocation.textContent = '';
-    locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=a3c53d34ecd943a9517dea09b203f8e0&units=${geoWeatherMe.unit}`;
+    locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
 
     (async () => {
       const res = await fetch(locationLink.href, {
@@ -34,48 +47,33 @@ function geoWeatherMe() {
       console.log(json['name']);
       document.querySelector('.location').innerHTML = `${json['name']}`;
     })();
-
-    function reorder(arr, start, end) {
-      var newarr1 = arr.splice(start, end);
-      var newarr2 = arr.splice(0, start);
-      var newarr3 = newarr1.concat(newarr2);
-      return newarr3;
-    };
     (async () => {
       const res = await fetch(weatherLink.href, {
         headers: { Accept: 'application/json' },
       });
-      var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      var date = new Date();
-      date = date.toString().slice(0, 3);
-      var startDay = days.indexOf(date);
-      days = reorder(days, startDay, 7);
       const json = await res.json();
-      var deg = "°";
-      var js;
-        days.forEach(function (day, index) {
-          for (var j = 0; j < days.length; j++) {
-            js = j.toString();
-            days.forEach(function (day, index) {
-              document.querySelector(`.card-title${js}`).innerHTML = `${days[j]}`;
-            });
-          }
-        });
       for (var i = 0; i < json["daily"].length - 1; i++) {
-        js = i.toString();
         Object.entries(json["daily"][i]["temp"]).forEach(([key, value]) => {
+          var is = i.toString();
+          var deg = "°";
           if (key == "day") {
-            var day = days[date];
-            document.querySelector(`.card-day` + i).innerHTML = `${value}` + deg;
-
-
+            console.log(`day: ${key}:${value}`);
+            document.querySelector(`.card-day` + is).innerHTML = `${value}` + deg;
           }
-
+          // else if (key == "min") {
+          // console.log(`day: ${key}:${value}`);
+          // document.querySelector('.card-min'+is).innerHTML = `${value}`;
+          // }
+          // else if (key == "max") {
+          // console.log(`day: ${key}:${value}`);
+          // document.querySelector('.card-max'+is).innerHTML = `${value}`;
+          // }
+          // console.log(`${key}:${value}`["temp"]["day"]);
+          // console.log(`${key}:${value}`["temp"]["night"]);
         });
-      };
+      }
+
     })();
-
-
     (async () => {
       const res = await fetch(weatherLink.href, {
         headers: { Accept: 'application/json' },
@@ -131,14 +129,25 @@ function geoWeatherMe() {
             }
           }
         }
+
       });
     })();
   }
-
   function error() {
     weatherStatus.textContent = 'Unable to retrieve your weather';
   }
+  // (async () => {
+  //   const res = await fetch(weatherLink.href, {
+  //     headers: { Accept: 'application/json' },
+  //   });
+  //   const json = await res.json();
+  //   Object.entries(json["daily"]).forEach(([key, value]) => {
+  //     if (key != "weather") {
+  //     console.log(`${key}:${value}`);
+  //     }
 
+  //   });
+  // })();
 
   if (!navigator.geolocation) {
     weatherStatus.textContent = 'Geolocation is not supported by your browser';
@@ -152,7 +161,6 @@ function geoWeatherMe() {
 if (document.readyState === 'loading') {  // Loading hasn't finished yet
   document.addEventListener('DOMContentLoaded', geoWeatherMe);
   geoWeatherMe.unit = "imperial";
-  geoWeatherMe.weekly = "cards";
 } else {  // `DOMContentLoaded` has already fired
   geoWeatherMe();
 }
