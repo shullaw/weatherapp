@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template import Template
 
 # Create your views here.
 ##----weather app view/template----##

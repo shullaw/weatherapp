@@ -32,14 +32,16 @@
   <!----------------- MDN Boostrap CDN------------------>
   <style>
     body {
-      background: rgb(202, 3, 178);
+      /* background: rgb(202, 3, 178); */
       background: radial-gradient(circle, rgba(0, 212, 255, 0.3984944319524685) 0%, rgba(80, 9, 121, 1) 35%, rgba(202, 3, 178, .75) 100%);
       background-image: url('{% static 'img/background_img.jpg' %}');
-      background-repeat: :backdrop;
-      /* background-attachment: fixed; */
+      /* background-repeat: :backdrop; */
+      background-attachment: fixed;
       background-size: -webkit-full-screen;
-      width: clientWidth;
+      max-width: 98vw;
+      max-height: 98vh;
     }
+
   </style>
 </head>
 <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
@@ -57,15 +59,11 @@
   </div>
 </div>
 <div class="weather-box">
-  <div class="row" style="position:relative">
-    <!-- <p id="before" style="color:white; position:relative;  margin:0 auto"></p> -->
-    <button class="btn purple-gradient btn-rounded btn-hover weather animated zoomIn"></button>
-    <!-- <p id="after" style="color:white; position:relative; margin:0 auto"></p> -->
+  <div class="row" style="height:25vh">
+    <button class="btn purple-gradient btn-rounded btn-hover weather animated zoomIn current-weather-image"></button>
   </div>
 </div>
-</div>
-
-<div class="weather-aspect" style="width:fit-content; margin:0 auto; height:auto; justify-content: center; ">
+<div class="weather-aspect" style="height:fit-content;width:fit-content; margin:0 auto; justify-content: center; left:10px;right:10px; ">
   <div class="sunrise" style="position:relative; bottom:15px;">
     <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:50%;" class="sunup">
     <p>Sunrise
