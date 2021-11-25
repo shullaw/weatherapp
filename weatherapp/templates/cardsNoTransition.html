@@ -8,11 +8,14 @@
       align-items: center;
       justify-content: center;
       min-width: 150px;
+      height: 240px;
     }
   
     .daily {
-      min-width: 100vw;
-      overflow: visible;
+      margin: 0 auto;
+      left:10px;
+      right:10px;
+      width: fit-content;
     }
   
     .card-title {
@@ -29,7 +32,7 @@
       font-family: "Lato", sans-serif;
     }
   </style>
-  <div class="daily">
+  <div class="daily" style="height:fit-content;width:fit-content; margin:0 auto; justify-content: center; left:10px;right:10px;" >
     <div class="row">
     <!-- <div class="mySlides animated fadeIn"> -->
       <div class="col-sm text-center">
@@ -37,7 +40,7 @@
           <h5 class="card-title card-title0">Sunday</h5>
           <div class="card-body">
             <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+              style="transform: scale(2);">
               {% include 'sunny.html' %}
             </div>
             <p class="card-day card-day0 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
@@ -52,8 +55,7 @@
         <div class="card">
           <h5 class="card-title card-title1">Monday</h5>
           <div class="card-body">
-            <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+            <div class="text-white text-center d-flex align-items-center justify-content-center" style="transform: scale(2);">
               {% include 'cloudy.html' %}
             </div>
             <p class="card-text text-white">
@@ -70,7 +72,7 @@
           <h5 class="card-title card-title2">Tuesday</h5>
           <div class="card-body">
             <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+            style="transform: scale(2);">
               {% include 'snow.html' %}
             </div>
             <p class="card-text text-white">
@@ -87,7 +89,7 @@
           <h5 class="card-title card-title3">Wednesday</h5>
           <div class="card-body">
             <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+            style="transform: scale(2);">
               {% include 'stormy.html' %}
             </div>
             <p class="card-text text-white">
@@ -104,7 +106,7 @@
           <h5 class="card-title card-title4">Thursday</h5>
           <div class="card-body">
             <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+            style="transform: scale(2);">
               {% include 'windy.html' %}
             </div>
             <p class="card-text text-white">
@@ -121,7 +123,7 @@
           <h5 class="card-title card-title5">Friday</h5>
           <div class="card-body">
             <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+            style="transform: scale(2);">
               {% include 'sunny.html' %}
             </div>
             <p class="card-text text-white">
@@ -138,7 +140,7 @@
           <h5 class="card-title card-title6">Saturday</h5>
           <div class="card-body">
             <div class="text-white text-center d-flex align-items-center justify-content-center"
-              style="transform: scale(1.5);">
+            style="transform: scale(2);">
               {% include 'stormy.html' %}
             </div>
             <p class="card-text text-white">
