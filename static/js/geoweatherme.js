@@ -133,9 +133,10 @@ function geoWeatherMe() {
           }
         }
         else if (key == "weather") {
-          console.log(value[0]['id'].toString().slice(0,1));
+          // console.log(value[0]['id'].toString().slice(0,1));
           var id = value[0]['id'].toString().slice(0,1);
-          if (id == 8) {
+          console.log(key,value);
+          if (id == 80 || id == 80 || id == 80 || id == 80) {
             // document.querySelector(".weather").innerHTML = "Cloudy";
             // document.querySelector('.weather-aspect').style.background = "radial-gradient(circle, rgba(251,126,63,1) 0%, rgba(252,241,70,1) 100%)";
             document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
@@ -152,6 +153,15 @@ function geoWeatherMe() {
         </g>
         </svg>`;
             console.log("cloudy");
+          }
+          else if (id == 8){
+            document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
+            <svg class="clear-sky" preserveAspectRatio="X200Y200 meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 82.6 52.3" style="enable-background:new 0 0 82.6 52.3;" xml:space="preserve">
+        <g id="Layer_1">
+          <path class="clear-sky" d="M21.8,24.2c0.1,0,0.3-1.1,0.4-1.2c0.5-1.2,1.1-2.4,1.8-3.4c3.9-5.7,12.6-7.1,18.2-3.1c0,0,3.7-6,11-5.9
+            c0,0,5.6-0.6,10.3,4.9c0,0,2.8,3.3,2.9,7.4c0,0,3.2-0.5,5.4,1c0,0,6.2,2.6,5.9,10.8H56.3c0,0-2-3.5-7.3-3.6c0.2,0-0.5-2.2-0.6-2.4
+            c-1.4-4.4-5.5-6.9-9.9-7.4c-3.4-0.4-6.6,0.8-9,3.2c-0.1,0.1-1.2,1.3-1.2,1.3S25.3,23.6,21.8,24.2z"/>
+          <path class="clear-sky" d="M57.6,40.7c`
           }
         }
       });

@@ -37,8 +37,15 @@
       /* background-repeat: :backdrop; */
       background-attachment: fixed;
       background-size: cover;
-      width:100%;
+      width: -moz-fit-content;
       height:100%;
+    /* overflow:hidden; */
+    /* position:absolute; */
+    /* overflow-y: scroll; */
+    /* padding-right: 20px; */
+    box-sizing: border-box;
+      width:100%;
+      margin: 0 auto;
     }
     .weather-aspect{
         display: grid;
@@ -47,8 +54,8 @@
         grid-template-columns:repeat(auto-fill,
             minmax(max(100px,(100% - (var(--n) - 1)*10px)/var(--n)),1fr));
         justify-content:center ;
-        width:100vw;
-        position:relative;
+        width:90%;
+        margin:0 auto;
     }
     .aspect-data{
       display:flex;
@@ -80,7 +87,7 @@
   <div class="date">
   </div>
 </div>
-<div class="weather-box" style="padding:0px; height:150px">
+<div class="weather-box" style="padding:0px;">
     <button class="weather-button btn purple-gradient btn-rounded btn-hover weather animated zoomIn current-weather-image" style="position: relative; padding:0px;"></button>
 </div>
 <div style="display:flex; justify-content: center; align-items: center; width:102%;">
@@ -191,13 +198,13 @@
     yes.hidden = !yes.hidden;
   });
 </script>
-<script>
+<!-- <script>
 
 
 
   function reportWindowSize() {
-    var actualInnerWidth = window.innerWidth;     // El. width minus scrollbar width
-    var actualInnerHeight = window.innerHeight;     // El. width minus scrollbar width
+    var actualInnerWidth = window.innerWidth -10;     // El. width minus scrollbar width
+    var actualInnerHeight = window.innerHeight -10;     // El. width minus scrollbar width
     document.body.style.width = actualInnerWidth + "px";
     document.body.style.height = actualInnerHeight + "px";
   }
@@ -205,4 +212,4 @@
   window.onresize = reportWindowSize;
   window.addEventListener('resize', reportWindowSize);
   reportWindowSize();
-</script>
+</script> -->

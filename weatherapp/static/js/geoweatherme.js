@@ -133,9 +133,10 @@ function geoWeatherMe() {
           }
         }
         else if (key == "weather") {
-          console.log(value[0]['id'].toString().slice(0,1));
+          // console.log(value[0]['id'].toString().slice(0,1));
           var id = value[0]['id'].toString().slice(0,1);
-          if (id == 8) {
+          console.log(key,value);
+          if (id == 80 || id == 80 || id == 80 || id == 80) {
             // document.querySelector(".weather").innerHTML = "Cloudy";
             // document.querySelector('.weather-aspect').style.background = "radial-gradient(circle, rgba(251,126,63,1) 0%, rgba(252,241,70,1) 100%)";
             document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
@@ -152,6 +153,25 @@ function geoWeatherMe() {
         </g>
         </svg>`;
             console.log("cloudy");
+          }
+          else if (id == 8){
+            document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
+	<svg version="1.1" class="clear-sky-svg" xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.3 92.6"
+		preserveAspectRatio="X200Y200 meet style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		<g>
+			<path id="sunn" class="sun" fill="currentColor"
+			fill="#FFF" d="M50.8,25.7c0,7.9-6.4,14.4-14.4,14.4s-14.4-6.4-14.4-14.4s6.4-14.4,14.4-14.4S50.8,17.8,50.8,25.7z" />
+			<path class="line big-path line-1" d="M54.5,25.8h6" />
+			<path class="line big-path line-2" d="M12.4,25.8h6" />
+			<path class="line big-path line-3" d="M36.5,44.3v6" />
+			<path class="line big-path line-4" d="M36.5,8.2v-6" />
+			<path class="line big-path line-5" d="M23,38.8l-4.8,4.8" />
+			<path class="line big-path line-6" d="M54.9,8.9L50,13.8" />
+			<path class="line big-path line-7" d="M50,38.8l4.4,4.4" />
+			<path class="line big-path line-8" d="M18.8,9.6l4.2,4.2" />
+		</g>
+	</svg>`
           }
         }
       });
