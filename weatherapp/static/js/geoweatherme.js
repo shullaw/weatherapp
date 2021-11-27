@@ -134,9 +134,11 @@ function geoWeatherMe() {
         }
         else if (key == "weather") {
           // console.log(value[0]['id'].toString().slice(0,1));
-          var id = value[0]['id'].toString().slice(0,1);
+          // var id = value[0]['id'].toString().slice(0,1);
+          var id = value[0]['id'].toString();          
+          console.log(id);
           console.log(key,value);
-          if (id == 80 || id == 80 || id == 80 || id == 80) {
+          if (id == 801 || id == 802 || id == 803 || id == 804) {
             // document.querySelector(".weather").innerHTML = "Cloudy";
             // document.querySelector('.weather-aspect').style.background = "radial-gradient(circle, rgba(251,126,63,1) 0%, rgba(252,241,70,1) 100%)";
             document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
@@ -152,13 +154,13 @@ function geoWeatherMe() {
         <g id="Layer_2">
         </g>
         </svg>`;
-            console.log("cloudy");
           }
-          else if (id == 8){
+          else if (id == 800){
             document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
-	<svg version="1.1" class="clear-sky-svg" xmlns="http://www.w3.org/2000/svg"
-		xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.3 92.6"
-		preserveAspectRatio="X200Y200 meet style="enable-background:new 0 0 512 512;" xml:space="preserve">
+	<div>
+            <svg version="1.1" class="clear-sky-svg" xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" viewBox="0 0 72.3 92.6"
+		 meet style="enable-background:new 0 0 512 512;" xml:space="preserve">
 		<g>
 			<path id="sunn" class="sun" fill="currentColor"
 			fill="#FFF" d="M50.8,25.7c0,7.9-6.4,14.4-14.4,14.4s-14.4-6.4-14.4-14.4s6.4-14.4,14.4-14.4S50.8,17.8,50.8,25.7z" />
@@ -171,7 +173,8 @@ function geoWeatherMe() {
 			<path class="line big-path line-7" d="M50,38.8l4.4,4.4" />
 			<path class="line big-path line-8" d="M18.8,9.6l4.2,4.2" />
 		</g>
-	</svg>`
+	</svg>
+  </div>`
           }
         }
       });
