@@ -133,7 +133,7 @@ function geoWeatherMe() {
           }
         }
         else if (key == "weather") {
-          // console.log(value[0]['id'].toString().slice(0,1));
+          console.log(value[0]['id'].toString().slice(0,1));
           var id = value[0]['id'].toString().slice(0,1);
           if (id == 8) {
             // document.querySelector(".weather").innerHTML = "Cloudy";

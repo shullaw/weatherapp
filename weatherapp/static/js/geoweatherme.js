@@ -22,9 +22,9 @@ function geoWeatherMe() {
 
 
 
-    weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
+    weatherLink.href = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=a3c53d34ecd943a9517dea09b203f8e0&units=${geoWeatherMe.unit}`;
     weatherLocation.textContent = '';
-    locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9d65df0e73d8ab48d9ea132aaa9a6324&units=${geoWeatherMe.unit}`;
+    locationLink.href = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=a3c53d34ecd943a9517dea09b203f8e0&units=${geoWeatherMe.unit}`;
 
     (async () => {
       const res = await fetch(locationLink.href, {
@@ -133,7 +133,7 @@ function geoWeatherMe() {
           }
         }
         else if (key == "weather") {
-          // console.log(value[0]['id'].toString().slice(0,1));
+          console.log(value[0]['id'].toString().slice(0,1));
           var id = value[0]['id'].toString().slice(0,1);
           if (id == 8) {
             // document.querySelector(".weather").innerHTML = "Cloudy";

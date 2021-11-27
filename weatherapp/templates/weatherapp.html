@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <!--THIS IS THE FILE BEING USED FOR HOMEPAGE in weatherapp/templates-->
 <html lang=“en”>
-
 <head>
   <meta charset=“UTF-8” name="viewport" content="width=device-width, initial-scale=1">
   <title>WeatherApp</title>
@@ -37,10 +36,33 @@
       background-image: url('{% static 'img/background_img.jpg' %}');
       /* background-repeat: :backdrop; */
       background-attachment: fixed;
-      background-size: -webkit-full-screen;
-      max-width: 98vw;
-      max-height: 98vh;
+      background-size: cover;
+      width:100%;
+      height:100%;
     }
+    .weather-aspect{
+        display: grid;
+  grid-auto-rows: minmax(100px, auto);
+        --n:6;
+        grid-template-columns:repeat(auto-fill,
+            minmax(max(100px,(100% - (var(--n) - 1)*10px)/var(--n)),1fr));
+        justify-content:center ;
+        width:100vw;
+        position:relative;
+    }
+    .aspect-data{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .weather-button{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      height:150px;
+      position:relative;
+    }
+
 
   </style>
 </head>
@@ -58,44 +80,55 @@
   <div class="date">
   </div>
 </div>
-<div class="weather-box">
-  <div class="row" style="height:25vh">
-    <button class="btn purple-gradient btn-rounded btn-hover weather animated zoomIn current-weather-image"></button>
-  </div>
+<div class="weather-box" style="padding:0px; height:150px">
+    <button class="weather-button btn purple-gradient btn-rounded btn-hover weather animated zoomIn current-weather-image" style="position: relative; padding:0px;"></button>
 </div>
-<div class="weather-aspect" style="height:fit-content;width:fit-content; margin:0 auto; justify-content: center; left:10px;right:10px; ">
+<div style="display:flex; justify-content: center; align-items: center; width:102%;">
+<div class="weather-aspect">
+  <div class="aspect-data col-sm text-center">
   <div class="sunrise" style="position:relative; bottom:15px;">
     <img src="{% static 'img/sunrise.png' %}" alt="sun" style="width:50%;" class="sunup">
-    <p>Sunrise
+    <p>Sunrise</p>
     <p>data here</p>
   </div>
+  </div>
+  <div class="aspect-data col-sm text-center" style="padding:0px;">
   <div class="wind" style="position:relative; bottom:15px;">
     <img src="{% static 'img/windy.png' %}" alt="wind" style="width:50%" class="air">
     <p>Wind</p>
     <p>data here</p>
   </div>
+  </div>
+  <div class="aspect-data col-sm text-center">
   <div class="humidity" style="position:relative; bottom:15px;">
     <img src="{% static 'img/humidity.png' %}" alt="humidity" style="width:50%" class="humid">
     <p>Humidity</p>
     <p>data here</p>
   </div>
+  </div>
+  <div class="aspect-data col-sm text-center">
   <div class="visibility" style="position:relative; bottom:15px;">
     <img src="{% static 'img/visible.png' %}" alt="visibility" style="width:50%" class="visible">
     <p>Visibility</p>
     <p>data here</p>
   </div>
+  </div>
+  <div class="aspect-data col-sm text-center">
   <div class="temperature" style="position:relative; bottom:15px;">
     <img src="{% static 'img/temperature.png' %}" alt="feels_like" style="width:50%" class="temps">
     <p>Feels Like</p>
     <p>data here</p>
   </div>
+  </div>
+  <div class="aspect-data col-sm text-center">
   <div class="sunset" style="position:relative; bottom:15px;">
     <img src="{% static 'img/sunset.png' %}" alt="sun" style="width:50%" class="sundown">
     <p>Sunset</p>
     <p>data here</p>
   </div>
 </div>
-
+</div>
+</div>
 <p id="status"></p>
 <a id="map-link" target="_blank"></a>
 
@@ -170,6 +203,6 @@
   }
 
   window.onresize = reportWindowSize;
-  // window.addEventListener('resize', reportWindowSize);
+  window.addEventListener('resize', reportWindowSize);
   reportWindowSize();
 </script>
