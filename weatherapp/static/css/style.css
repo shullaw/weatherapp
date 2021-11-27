@@ -170,7 +170,8 @@ body {
 
 .overcast-clouds .cloud-still {
   fill: #DAD9D9;
-  animation: bounce 4s ease-in-out alternate-reverse infinite;
+  animation: 4s bounce ease-in-out infinite; 
+
 }
 .overcast-clouds .cloud-still:nth-child(1) {
   -webkit-animation-delay: 0.2s;
@@ -435,12 +436,12 @@ body {
     stroke-dashoffset: 0;
   }
 }
-@-webkit-keyframes bounce {
+@keyframes bounce {
   0%, 50%, 100% {
     transform: translateY(0px) translateX(0px) rotate(0.1deg);
   }
   30%, 80% {
-    transform: translateY(3px) translateX(3px) rotate(0.1deg);
+    transform: translateY(1px) translateX(3px) rotate(0.1deg);
   }
 }
 @keyframes bounce {
@@ -448,7 +449,7 @@ body {
     transform: translateY(0px) translateX(0px) rotate(0.1deg);
   }
   30%, 80% {
-    transform: translateY(3px) translateX(3px) rotate(0.1deg);
+    transform: translateY(1px) translateX(3px) rotate(0.1deg);
   }
 }
 @-webkit-keyframes fall-clockwise {

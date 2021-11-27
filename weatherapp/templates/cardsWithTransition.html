@@ -1,0 +1,165 @@
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+      transition: 0.3s;
+      border-radius: 10px;
+      background-color: transparent;
+      display: block;
+      align-items: center;
+      justify-content: center;
+      /* min-width: 150px; */
+    }
+  
+    .daily {
+      margin: 0 auto;
+      left:10px;
+      right:10px;
+    }
+  
+    .card-title {
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-family: "Lato", sans-serif;
+  
+    }
+  
+    .card-day {
+      color: white;
+      font-weight: bold;
+      font-family: "Lato", sans-serif;
+    }
+  </style>
+  <div class="slideshow-container" style="height:fit-content;height:fit-content;justify-content: center; left:10px;right:10px; ">  
+    <div class="mySlides animated fadeIn">
+      <div class="col-sm text-center">
+        <div class="card">
+          <h5 class="card-title card-title0">Sunday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'sunny.html' %}
+            </div>
+            <p class="card-day card-day0 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+              position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mySlides animated fadeIn">
+      <div class="col text-center">
+        <div class="card">
+          <h5 class="card-title card-title1">Monday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'cloudy.html' %}
+            </div>
+            <p class="card-text text-white">
+            <p class="card-day card-day1 text-white"
+              style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mySlides animated fadeIn">
+      <div class="col-sm text-center">
+        <div class="card">
+          <h5 class="card-title card-title2">Tuesday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'snow.html' %}
+            </div>
+            <p class="card-text text-white">
+            <p class="card-day card-day2 text-white"
+              style="margin: 0 top: 25px; bottom:0px; left:25px; right:25px; position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mySlides animated fadeIn">
+      <div class="col-sm text-center">
+        <div class="card">
+          <h5 class="card-title card-title3">Wednesday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'stormy.html' %}
+            </div>
+            <p class="card-text text-white">
+            <p class="card-day card-day3 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+              position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mySlides animated fadeIn">
+      <div class="col-sm text-center">
+        <div class="card">
+          <h5 class="card-title card-title4">Thursday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'windy.html' %}
+            </div>
+            <p class="card-text text-white">
+            <p class="card-day card-day4 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+              position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mySlides animated fadeIn">
+      <div class="col-sm text-center">
+        <div class="card">
+          <h5 class="card-title card-title5">Friday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'sunny.html' %}
+            </div>
+            <p class="card-text text-white">
+            <p class="card-day card-day5 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+              position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mySlides animated fadeIn">
+      <div class="col-sm text-center">
+        <div class="card">
+          <h5 class="card-title card-title6">Saturday</h5>
+          <div class="card-body">
+            <div class="text-white text-center d-flex align-items-center justify-content-center"
+              style="transform: scale(1.5);">
+              {% include 'stormy.html' %}
+            </div>
+            <p class="card-text text-white">
+            <p class="card-day card-day6 text-white"" style=" margin: 0 top: 25px; bottom:0px; left:25px; right:25px;
+              position:absolute">content</p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  
+  <div style="text-align:center">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+  
