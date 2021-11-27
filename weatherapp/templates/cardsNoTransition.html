@@ -28,7 +28,7 @@
     }
     
   .daily{
-        display: inline-grid;
+        display: grid;
         --n:7;
         grid-auto-columns: minmax(100px, auto);
         grid-template-columns:repeat(auto-fill,
@@ -37,9 +37,8 @@
         column-gap: 5px;
         justify-content: center;
         align-items: center;
-        width:102%;
-        position:relative;
-        margin:auto;
+        width:100%;
+        margin:0 auto;
     }
   </style>
   <div style="display:flex; justify-content: center; width:100%;"></div>
