@@ -159,7 +159,7 @@ function geoWeatherMe() {
             document.querySelector('.current-weather-image').innerHTML = document.querySelector('.current-weather-image').innerHTML +`
 	<div>
             <svg version="1.1" class="clear-sky-svg" xmlns="http://www.w3.org/2000/svg"
-		xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" viewBox="0 0 72.3 92.6"
+		xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" viewBox="0 0 72.3 2.6"
 		 meet style="enable-background:new 0 0 512 512;" xml:space="preserve">
 		<g>
 			<path id="sunn" class="sun" fill="currentColor"
