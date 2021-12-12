@@ -1,3 +1,9 @@
+# Weatherapp using Django, JavaScript, and OpenWeatherAPI
+
+[Original project repo on GitLab](https://gitlab.com/cmps-453-fall-2021-team-weather_men/django-project-template)
+<br>
+[Hosted with Heroku](http://cmps-453-fall-2021-team-a.herokuapp.com/)
+
 # Django Project Template
 
 A Django project template with CI, gitignore, README, development, and deployment instructions
